@@ -1,0 +1,61 @@
+$mataf-blue: rgba(24, 40, 95, 1);
+
+mat-toolbar {
+    background: $mataf-blue;
+    color: white;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+mat-sidenav {
+    margin: 16px;
+    width: 200px;
+    border-right: none;
+    background: $mataf-blue;
+    color: white;
+    padding: 16px;
+    text-align: center;
+}
+
+.content {
+    height: calc(100vh - 98px);
+    margin: 16px;
+    margin-left: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: lightgray;
+}
+
+mat-sidenav-container {
+    height: calc(100vh - 65px);
+}
+
+img.logo {
+    width: 35px;
+    padding-right: 7px;
+    padding-left: 15px;
+    cursor: pointer;
+}
+
+.menu-button {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    font-size: 20px;
+    border-bottom: 1px solid #e4a900;
+}
+
+.menu-button.active{
+    // text-shadow: 0px 0px 3px #e4a900;
+}
+
+.menu-btn-icon {
+    padding-left: 10px;
+}
+
+// .menu-btn-txt-wrapper {
+//     width: 100%;
+//     display:flex;
+// }
