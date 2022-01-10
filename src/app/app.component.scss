@@ -17,6 +17,10 @@ mat-sidenav {
     text-align: center;
 }
 
+// mat-sidenav-content {
+//     overflow: hidden;
+// }
+
 .content {
     height: calc(100vh - 98px);
     margin: 16px;
@@ -47,7 +51,7 @@ img.logo {
     border-bottom: 1px solid #e4a900;
 }
 
-.menu-button.active{
+.menu-button.active {
     // text-shadow: 0px 0px 3px #e4a900;
 }
 
