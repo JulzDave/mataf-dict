@@ -1,21 +1,22 @@
-<mat-toolbar>
-  <img src="../assets/fibi-logo.png" alt="logo" class="logo" (click)="sidenav.toggle()"/>
-  מילון מתף
-</mat-toolbar>
+    <mat-toolbar>
+        <img src="../assets/fibi-logo.png" alt="logo" class="logo" (click)="sidenav.toggle()" />
+        מילון מתף
+    </mat-toolbar>
 
-<mat-sidenav-container dir="rtl">
-  <mat-sidenav #sidenav=matSidenav mode="side" class="mat-elevation-z4"> 
-    <button routerLink="/dict" routerLinkActive="active" mat-button class="menu-button">
-        <mat-icon class="menu-btn-icon">book</mat-icon>
-        <span class="menu-btn-txt-wrapper"><span>מילון מונחים</span></span>
-    </button>      
-    <button routerLink="/translator" routerLinkActive="active" mat-button class="menu-button">
-        <mat-icon class="menu-btn-icon">translate</mat-icon>
-        <span class="menu-btn-txt-wrapper"><span>מתורגמן</span></span>
-    </button>      
-</mat-sidenav>
-  <mat-sidenav-content>
-    <div class="content mat-elevation-z4"><router-outlet></router-outlet>
-    </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+    <mat-sidenav-container dir="rtl">
+        <mat-sidenav #sidenav="matSidenav" mode="side" class="mat-elevation-z4">
+            <button routerLink="/dict" routerLinkActive="active" mat-button class="menu-button">
+                <mat-icon class="menu-btn-icon">book</mat-icon>
+                <span class="menu-btn-txt-wrapper"><span>מילון מונחים</span></span>
+            </button>
+            <button routerLink="/translator" routerLinkActive="active" mat-button class="menu-button">
+                <mat-icon class="menu-btn-icon">translate</mat-icon>
+                <span class="menu-btn-txt-wrapper"><span>מתורגמן</span></span>
+            </button>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <div class="content mat-elevation-z4">
+                <router-outlet></router-outlet>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>

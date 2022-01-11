@@ -1,7 +1,6 @@
-$mataf-blue: rgba(24, 40, 95, 1);
 
 mat-toolbar {
-    background: $mataf-blue;
+    background: var(--mataf-blue);
     color: white;
     letter-spacing: 1px;
     font-weight: bold;
@@ -11,11 +10,15 @@ mat-sidenav {
     margin: 16px;
     width: 200px;
     border-right: none;
-    background: $mataf-blue;
+    background: var(--mataf-blue);
     color: white;
     padding: 16px;
     text-align: center;
 }
+
+// mat-sidenav-content {
+//     overflow: hidden;
+// }
 
 .content {
     height: calc(100vh - 98px);
@@ -47,7 +50,7 @@ img.logo {
     border-bottom: 1px solid #e4a900;
 }
 
-.menu-button.active{
+.menu-button.active {
     // text-shadow: 0px 0px 3px #e4a900;
 }
 
