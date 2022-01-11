@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Tabulator } from 'tabulator-tables';
 
 export interface PeriodicElement {
   name: string;
@@ -30,7 +31,37 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class DictComponent implements OnInit {
   constructor() {}
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
-  ngOnInit(): void {}
+  @Input() tableData: any[] = [
+    {
+      hebrew: 'מוצר בר קיימא',
+      category: '(כלכלה וסטטיסטיקה)',
+      english: 'durable goods',
+    },
+    { hebrew: 'מסילה', category: '(תחבורה)', english: 'track' },
+    {
+      hebrew: 'מוצר גמיש',
+      category: '(שיווק ופרסום)',
+      english: 'elastic product',
+    },
+  ];
+  @Input() columnNames: any[] = [];
+  @Input() height: string = '311px';
+  tab = document.createElement('div');
+
+  ngOnInit(): void {
+    this.drawTable();
+  }
+  private drawTable(): void {
+    new Tabulator(this.tab, {
+      data: this.tableData,
+      reactiveData: true, //enable data reactivity
+      columns: this.columnNames,
+      layout: 'fitData',
+      height: this.height,
+    });
+    setTimeout(() => {
+      document.getElementById('my-tabular-table')!.appendChild(this.tab);
+    }, 30000);
+  }
+  // ngOnInit(): void {}
 }
