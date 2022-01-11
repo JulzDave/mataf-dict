@@ -29,6 +29,7 @@ mat-sidenav {
     align-items: center;
     font-size: 2rem;
     color: lightgray;
+    contain: content;
 }
 
 mat-sidenav-container {
