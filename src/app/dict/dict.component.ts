@@ -20,6 +20,7 @@ import {
 })
 export class DictComponent implements AfterViewInit, OnChanges {
   constructor() {}
+
   @Input() tableData: any[] = [
     {
       hebrew: 'מוצר בר קיימא',
@@ -163,6 +164,7 @@ export class DictComponent implements AfterViewInit, OnChanges {
       english: 'elastic product',
     },
   ];
+
   sharedColumnOptions: Partial<Tabulator.ColumnDefinition> = {
     width: 150,
     headerHozAlign: 'center',
@@ -207,7 +209,7 @@ export class DictComponent implements AfterViewInit, OnChanges {
       FilterModule,
       EditModule,
     ]);
-    new Tabulator(this.tab, {
+    const table = new Tabulator(this.tab, {
       textDirection: 'rtl',
       layout: 'fitColumns',
       pagination: true,
@@ -220,6 +222,23 @@ export class DictComponent implements AfterViewInit, OnChanges {
       height: this.height,
       maxHeight: '415px',
       minHeight: '30vh',
+      locale: true,
+      langs: {
+        en: {
+          pagination: {
+            page_size: 'Page Size',
+            page_title: 'Show Page',
+            first: '<<',
+            first_title: 'עמוד ראשון',
+            last: '>>',
+            last_title: 'עמוד אחרון',
+            prev: '<',
+            prev_title: 'עמוד קודם',
+            next: '>',
+            next_title: 'עמוד הבא',
+          },
+        },
+      },
     });
 
     document.getElementById('my-tabular-table')!.appendChild(this.tab);
