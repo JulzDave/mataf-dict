@@ -23,7 +23,7 @@ import { TranslatorComponent } from './translator/translator.component';
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
-    MatTableModule
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

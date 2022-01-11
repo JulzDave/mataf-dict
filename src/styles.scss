@@ -1,13 +1,102 @@
 /* You can add global styles to this file, and also import other style files */
 @font-face {
-    font-family: "Open-Sans";
-    src: local("Open-Sans"), url("./assets/fonts/open-sans/static/OpenSans/OpenSans-Medium.ttf") format("truetype");
+   font-family: "Open-Sans";
+   src: local("Open-Sans"), url("./assets/fonts/open-sans/static/OpenSans/OpenSans-Medium.ttf") format("truetype");
 }
+:root {
+   --mataf-blue: rgba(24, 40, 95, 1);
+   --mataf-dark-blue: rgb(14, 4, 85);
+}
+
 html,
 body {
-    height: 100%;
+   height: 100%;
 }
 body {
-    margin: 0;
-    font-family: "Open-Sans", "Roboto", "Helvetica Neue", sans-serif;
+   margin: 0;
+}
+body * {
+   font-family: "Open-Sans", "Roboto", "Helvetica Neue", sans-serif;
+}
+   
+.tabulator {
+   font-size: 12px;
+   border: none;
+   overflow: auto;
+}
+
+// .tabulator .tabulator-table {
+//    height: 100%;
+// }
+
+// .tabulator .tabulator-header {
+//    font-weight: normal;
+//    border-bottom: 1px solid;
+//    border-bottom-color: rgba(0, 0, 0, 0.12);
+//    color: rgba(0, 0, 0, 0.54);
+// }
+
+// .tabulator .tabulator-header .tabulator-col {
+//    height: 48px;
+//    background-color: #ffffff;
+//    border: none;
+//    padding: 0 7px;
+// }
+
+// .tabulator-row {
+//    border-bottom: 1px solid;
+//    border-bottom-color: rgba(0, 0, 0, 0.12);
+//    min-height: 48px;
+//    vertical-align: middle;
+// }
+
+.tabulator-row .tabulator-cell {
+   // padding: 16px 7px;
+   border-right: none;
+   vertical-align: middle;
+   color: black;
+}
+.tabulator-col-title {
+   color: black;
+   font-weight: bolder;
+   text-decoration-line: underline;
+}
+.tabulator-page {
+color: var(--mataf-blue)!important;
+}
+.tabulator-page.active{
+background:var(--mataf-blue)!important;
+color:white!important;
+}
+
+// .tabulator-row .tabulator-cell:first-of-type,
+// .tabulator .tabulator-header .tabulator-col:first-of-type {
+//    padding-left: 24px;
+// }
+
+// .tabulator-row.tabulator-row-even {
+//    background-color: #ffffff;
+// }
+
+/* width */
+::-webkit-scrollbar {
+   width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+   box-shadow: inset 0 0 5px white;
+   border-radius: 10px;
+   width: 3px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+   background: var(--mataf-blue);
+   border-radius: 11px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+   background: var(--mataf-dark-blue);
 }

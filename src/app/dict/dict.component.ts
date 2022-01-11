@@ -1,35 +1,24 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Tabulator } from 'tabulator-tables';
+import {
+  AfterViewInit,
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
+import {
+  Tabulator,
+  PageModule,
+  SortModule,
+  FilterModule,
+  EditModule,
+} from 'tabulator-tables';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-];
-
-/**
- * @title Basic use of `<table mat-table>`
- */
 @Component({
   selector: 'app-dict',
   templateUrl: './dict.component.html',
   styleUrls: ['./dict.component.scss'],
 })
-export class DictComponent implements OnInit {
+export class DictComponent implements AfterViewInit, OnChanges {
   constructor() {}
   @Input() tableData: any[] = [
     {
@@ -43,25 +32,197 @@ export class DictComponent implements OnInit {
       category: '(שיווק ופרסום)',
       english: 'elastic product',
     },
+    {
+      hebrew: 'מוצר גמיש',
+      category: '(שיווק ופרסום)',
+      english: 'elastic product',
+    },
+    {
+      hebrew: 'מוצר גמיש',
+      category: '(שיווק ופרסום)',
+      english: 'elastic product',
+    },
+    {
+      hebrew: 'מוצר גמיש',
+      category: '(שיווק ופרסום)',
+      english: 'elastic product',
+    },
+    {
+      hebrew: 'מוצר גמיש',
+      category: '(שיווק ופרסום)',
+      english: 'elastic product',
+    },
+    {
+      hebrew: 'מוצר גמיש',
+      category: '(שיווק ופרסום)',
+      english: 'elastic product',
+    },
+    {
+      hebrew: 'מוצר גמיש',
+      category: '(שיווק ופרסום)',
+      english: 'elastic product',
+    },
+    {
+      hebrew: 'מוצר גמיש',
+      category: '(שיווק ופרסום)',
+      english: 'elastic product',
+    },
+    {
+      hebrew: 'מוצר גמיש',
+      category: '(שיווק ופרסום)',
+      english: 'elastic product',
+    },
+    {
+      hebrew: 'מוצר גמיש',
+      category: '(שיווק ופרסום)',
+      english: 'elastic product',
+    },
+    {
+      hebrew: 'מוצר גמיש',
+      category: '(שיווק ופרסום)',
+      english: 'elastic product',
+    },
+    {
+      hebrew: 'מוצר גמיש',
+      category: '(שיווק ופרסום)',
+      english: 'elastic product',
+    },
+    {
+      hebrew: 'מוצר גמיש',
+      category: '(שיווק ופרסום)',
+      english: 'elastic product',
+    },
+    {
+      hebrew: 'מוצר גמיש',
+      category: '(שיווק ופרסום)',
+      english: 'elastic product',
+    },
+    {
+      hebrew: 'מוצר גמיש',
+      category: '(שיווק ופרסום)',
+      english: 'elastic product',
+    },
+    {
+      hebrew: 'מוצר גמיש',
+      category: '(שיווק ופרסום)',
+      english: 'elastic product',
+    },
+    {
+      hebrew: 'מוצר גמיש',
+      category: '(שיווק ופרסום)',
+      english: 'elastic product',
+    },
+    {
+      hebrew: 'מוצר גמיש',
+      category: '(שיווק ופרסום)',
+      english: 'elastic product',
+    },
+    {
+      hebrew: 'מוצר גמיש',
+      category: '(שיווק ופרסום)',
+      english: 'elastic product',
+    },
+    {
+      hebrew: 'מוצר גמיש',
+      category: '(שיווק ופרסום)',
+      english: 'elastic product',
+    },
+    {
+      hebrew: 'מוצר גמיש',
+      category: '(שיווק ופרסום)',
+      english: 'elastic product',
+    },
+    {
+      hebrew: 'מוצר גמיש',
+      category: '(שיווק ופרסום)',
+      english: 'elastic product',
+    },
+    {
+      hebrew: 'מוצר גמיש',
+      category: '(שיווק ופרסום)',
+      english: 'elastic product',
+    },
+    {
+      hebrew: 'מוצר גמיש',
+      category: '(שיווק ופרסום)',
+      english: 'elastic product',
+    },
+    {
+      hebrew: 'מוצר גמיש',
+      category: '(שיווק ופרסום)',
+      english: 'elastic product',
+    },
+    {
+      hebrew: 'מוצר גמיש',
+      category: '(שיווק ופרסום)',
+      english: 'elastic product',
+    },
+    {
+      hebrew: 'מוצר גמיש',
+      category: '(שיווק ופרסום)',
+      english: 'elastic product',
+    },
   ];
-  @Input() columnNames: any[] = [];
-  @Input() height: string = '311px';
+  sharedColumnOptions: Partial<Tabulator.ColumnDefinition> = {
+    width: 150,
+    headerHozAlign: 'center',
+    hozAlign: 'center',
+    sorter: 'string',
+    headerFilter: 'input',
+  };
+  @Input() columnNames: Tabulator.ColumnDefinition[] = [
+    {
+      title: 'עברית',
+      field: 'hebrew',
+      ...this.sharedColumnOptions,
+    },
+    {
+      title: 'קטגוריה',
+      field: 'category',
+      ...this.sharedColumnOptions,
+    },
+    {
+      title: 'אנגלית',
+      field: 'english',
+      ...this.sharedColumnOptions,
+    },
+  ];
+  @Input() height: string = '415px';
   tab = document.createElement('div');
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.drawTable();
   }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.drawTable();
+  }
+
   private drawTable(): void {
+    this.tab.classList.add('table-striped');
+
+    Tabulator.registerModule([
+      PageModule,
+      SortModule,
+      FilterModule,
+      EditModule,
+    ]);
     new Tabulator(this.tab, {
+      textDirection: 'rtl',
+      layout: 'fitColumns',
+      pagination: true,
+      paginationMode: 'local',
+      paginationSize: 6,
+      // paginationSizeSelector: [3, 6, 8, 10],
+      // movableColumns: true,
       data: this.tableData,
-      reactiveData: true, //enable data reactivity
       columns: this.columnNames,
-      layout: 'fitData',
       height: this.height,
+      maxHeight: '415px',
+      minHeight: '30vh',
     });
-    setTimeout(() => {
-      document.getElementById('my-tabular-table')!.appendChild(this.tab);
-    }, 30000);
+
+    document.getElementById('my-tabular-table')!.appendChild(this.tab);
   }
   // ngOnInit(): void {}
 }
