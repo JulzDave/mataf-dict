@@ -18,7 +18,7 @@ body {
 body * {
    font-family: "Open-Sans", "Roboto", "Helvetica Neue", sans-serif;
 }
-   
+
 .tabulator {
    font-size: 12px;
    border: none;
@@ -63,11 +63,16 @@ body * {
    margin-left: 137px;
 }
 .tabulator-page {
-color: var(--mataf-blue)!important;
+   color: var(--mataf-blue) !important;
 }
-.tabulator-page.active{
-background:var(--mataf-blue)!important;
-color:white!important;
+.tabulator-page.active {
+   background: var(--mataf-blue) !important;
+   color: white !important;
+}
+
+.tabulator-footer {
+   display: flex;
+   justify-content: center;
 }
 
 // .tabulator-row .tabulator-cell:first-of-type,
