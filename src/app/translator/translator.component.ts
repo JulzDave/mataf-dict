@@ -291,7 +291,7 @@ export class TranslatorComponent implements AfterViewInit, OnChanges {
       ...this.sharedColumnOptions,
     },
   ];
-  @Input() height: string = '415px';
+  @Input() height: string = '100%';
   tab = document.createElement('div');
 
   ngAfterViewInit(): void {
@@ -329,8 +329,8 @@ export class TranslatorComponent implements AfterViewInit, OnChanges {
       data: this.tableData,
       columns: this.columnNames,
       height: this.height,
-      maxHeight: '415px',
-      minHeight: '30vh',
+      maxHeight: this.height,
+      // minHeight: '30vh',
       locale: true,
       langs: {
         'en-gb': {
