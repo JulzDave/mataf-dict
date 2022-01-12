@@ -11,6 +11,7 @@ import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DictComponent } from './dict/dict.component';
 import { TranslatorComponent } from './translator/translator.component';
+import { ClipboardModule } from 'ngx-clipboard';
 
 @NgModule({
   declarations: [AppComponent, routingComponents],
@@ -24,6 +25,7 @@ import { TranslatorComponent } from './translator/translator.component';
     MatIconModule,
     MatDividerModule,
     MatTableModule,
+    ClipboardModule
   ],
   providers: [],
   bootstrap: [AppComponent],

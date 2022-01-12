@@ -75,6 +75,19 @@ body * {
    justify-content: center;
 }
 
+.my-tabular-table {
+   zoom: 1.5;
+}
+@media (max-width: 1337px) {
+   .my-tabular-table {
+      zoom: 1;
+   }
+}
+.tabulator-tableholder {
+   min-height: calc(100% - 136px) !important;
+   height: calc(100% - 136px) !important;
+   max-height: calc(100% - 136px) !important;
+}
 // .tabulator-row .tabulator-cell:first-of-type,
 // .tabulator .tabulator-header .tabulator-col:first-of-type {
 //    padding-left: 24px;
@@ -83,6 +96,20 @@ body * {
 // .tabulator-row.tabulator-row-even {
 //    background-color: #ffffff;
 // }
+
+.copy-btn {
+   color: var(--mataf-blue);
+}
+.copy-btn:active {
+   color: gray;
+}
+.after-copy {
+   position: absolute;
+   left: 50%;
+   margin-left: -105px!important;
+   top: 45px;
+   color: var(--mataf-blue);
+}
 
 /* width */
 ::-webkit-scrollbar {

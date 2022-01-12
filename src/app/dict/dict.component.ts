@@ -5,12 +5,13 @@ import {
   OnChanges,
   SimpleChanges,
 } from '@angular/core';
+import { ClipboardService } from 'ngx-clipboard';
 import {
-  Tabulator,
+  EditModule,
+  FilterModule,
   PageModule,
   SortModule,
-  FilterModule,
-  EditModule,
+  Tabulator,
 } from 'tabulator-tables';
 
 @Component({
@@ -19,7 +20,10 @@ import {
   styleUrls: ['./dict.component.scss'],
 })
 export class DictComponent implements AfterViewInit, OnChanges {
-  constructor() {}
+  constructor(private clipboardApi: ClipboardService) {}
+
+  public showCopyMsg = false;
+  private table!: Tabulator;
 
   @Input() tableData: any[] = [
     {
@@ -199,7 +203,14 @@ export class DictComponent implements AfterViewInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     this.drawTable();
   }
-
+  public copyToClipboard() {
+    const data = this.table.getData('active');
+    this.clipboardApi.copyFromContent(JSON.stringify(data));
+    this.showCopyMsg = true;
+    setTimeout(() => {
+      this.showCopyMsg = false;
+    }, 2500);
+  }
   private drawTable(): void {
     this.tab.classList.add('table-striped');
 
@@ -209,12 +220,12 @@ export class DictComponent implements AfterViewInit, OnChanges {
       FilterModule,
       EditModule,
     ]);
-    const table = new Tabulator(this.tab, {
+    this.table = new Tabulator(this.tab, {
       textDirection: 'rtl',
       layout: 'fitColumns',
       pagination: true,
       paginationMode: 'local',
-      paginationSize: 6,
+      paginationSize: 7,
       // paginationSizeSelector: [3, 6, 8, 10],
       // movableColumns: true,
       data: this.tableData,
@@ -224,7 +235,7 @@ export class DictComponent implements AfterViewInit, OnChanges {
       minHeight: '30vh',
       locale: true,
       langs: {
-        en: {
+        'en-gb': {
           pagination: {
             page_size: 'Page Size',
             page_title: 'Show Page',
@@ -241,7 +252,7 @@ export class DictComponent implements AfterViewInit, OnChanges {
       },
     });
 
-    document.getElementById('my-tabular-table')!.appendChild(this.tab);
+    document.getElementById('dict-table-wrapper')!.appendChild(this.tab);
   }
   // ngOnInit(): void {}
 }

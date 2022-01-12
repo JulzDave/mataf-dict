@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~13.1.0",
     "@angular/router": "~13.1.0",
     "@types/tabulator-tables": "^5.0.1",
+    "ngx-clipboard": "^15.0.1",
     "rxjs": "~7.4.0",
     "tabulator-tables": "^5.0.10",
     "tslib": "^2.3.0",
