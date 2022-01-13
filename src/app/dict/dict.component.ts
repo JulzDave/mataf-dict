@@ -20,23 +20,22 @@ import { TabulatorService } from '../tabulator.service';
 export class DictComponent implements AfterViewInit, OnChanges {
     constructor(private stateService: TabulatorService) {}
 
+    private table!: Tabulator;
     get showCopyMsg(): boolean {
         return this.stateService.showCopyMsg;
     }
-    private table!: Tabulator;
-
     @Input() tableData: any[] = DICT_TABLE_DATA;
 
     sharedColumnOptions = {
-        ...this.stateService.sharedColumnOptions
+        ...this.stateService.sharedColumnOptions,
     };
+
     @Input() columnNames: Tabulator.ColumnDefinition[] = DICT_COLUMN_NAMES.map(
         (col) => ({
             ...this.sharedColumnOptions,
             ...col,
         })
     );
-
     private tab = document.createElement('div');
 
     ngAfterViewInit(): void {

@@ -19,14 +19,17 @@ import { TabulatorService } from '../tabulator.service';
 })
 export class TranslatorComponent implements AfterViewInit, OnChanges {
     constructor(private stateService: TabulatorService) {}
+
     private table!: Tabulator;
     get showCopyMsg(): boolean {
         return this.stateService.showCopyMsg;
     }
     @Input() tableData: any[] = TRANSLATOR_TABLE_DATA;
+
     sharedColumnOptions = {
-        ...this.stateService.sharedColumnOptions
+        ...this.stateService.sharedColumnOptions,
     };
+
     @Input() columnNames: Tabulator.ColumnDefinition[] =
         TRANSLATOR_COLUMN_NAMES.map((col) => ({
             ...this.sharedColumnOptions,
@@ -56,6 +59,7 @@ export class TranslatorComponent implements AfterViewInit, OnChanges {
             data: this.tableData,
             columns: this.columnNames,
         });
+
         document
             .getElementById('translator-table-wrapper')!
             .appendChild(this.tab);
