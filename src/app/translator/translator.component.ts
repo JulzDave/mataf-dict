@@ -262,7 +262,6 @@ export class TranslatorComponent implements AfterViewInit, OnChanges {
     },
   ];
   sharedColumnOptions: Partial<Tabulator.ColumnDefinition> = {
-    width: 150,
     headerHozAlign: 'center',
     hozAlign: 'center',
     sorter: 'string',
@@ -295,7 +294,6 @@ export class TranslatorComponent implements AfterViewInit, OnChanges {
       ...this.sharedColumnOptions,
     },
   ];
-  @Input() height: string = '100%';
   tab = document.createElement('div');
 
   ngAfterViewInit(): void {
@@ -329,12 +327,12 @@ export class TranslatorComponent implements AfterViewInit, OnChanges {
       layout: 'fitColumns',
       pagination: true,
       paginationMode: 'local',
-      paginationSize: 7,
+      paginationSize: 20,
       data: this.tableData,
       columns: this.columnNames,
       height: "100%",
       // height: this.height,
-      // maxHeight: this.height,
+      maxHeight: "85vh",
       // minHeight: '30vh',
       locale: true,
       langs: {
