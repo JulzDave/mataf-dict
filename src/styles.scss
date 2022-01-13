@@ -25,9 +25,9 @@ body * {
    overflow: auto;
 }
 
-// .tabulator .tabulator-table {
-//    height: 100%;
-// }
+.tabulator .tabulator-table {
+   // height: 35vh!important;
+}
 
 // .tabulator .tabulator-header {
 //    font-weight: normal;
@@ -76,11 +76,11 @@ body * {
 }
 
 .my-tabular-table {
-   zoom: 1.5;
+   transform: scale(1.5);
 }
 @media (max-width: 1337px) {
    .my-tabular-table {
-      zoom: 1;
+      transform: scale(1);
    }
 }
 .tabulator-tableholder {

@@ -13,6 +13,7 @@ import {
   Tabulator,
 } from 'tabulator-tables';
 import { ClipboardService } from 'ngx-clipboard';
+import { StateService } from '../state.service';
 
 @Component({
   selector: 'app-translator',
@@ -20,9 +21,12 @@ import { ClipboardService } from 'ngx-clipboard';
   styleUrls: ['./translator.component.scss'],
 })
 export class TranslatorComponent implements AfterViewInit, OnChanges {
-  constructor(private clipboardApi: ClipboardService) {}
+  constructor(
+    private clipboardApi: ClipboardService,
+    private stateService: StateService
+  ) {}
   private table!: Tabulator;
-  public showCopyMsg = false
+  public showCopyMsg = false;
 
   @Input() tableData: any[] = [
     {
@@ -224,7 +228,7 @@ export class TranslatorComponent implements AfterViewInit, OnChanges {
     {
       table: 'ASEG!',
       field: 'ASSGSDFGAS',
-      hebrew: "שלום!",
+      hebrew: 'שלום!',
       category: 'cat1',
       subcategory: 'day',
     },
@@ -334,18 +338,10 @@ export class TranslatorComponent implements AfterViewInit, OnChanges {
       locale: true,
       langs: {
         'en-gb': {
-          pagination: {
-            page_size: 'Page Size',
-            page_title: 'Show Page',
-            first: '<<',
-            first_title: 'עמוד ראשון',
-            last: '>>',
-            last_title: 'עמוד אחרון',
-            prev: '<',
-            prev_title: 'עמוד קודם',
-            next: '>',
-            next_title: 'עמוד הבא',
-          },
+          pagination: this.stateService.paginationButtons,
+        },
+        'en-us': {
+          pagination: this.stateService.paginationButtons,
         },
       },
     });

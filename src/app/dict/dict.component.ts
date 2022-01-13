@@ -13,6 +13,7 @@ import {
   SortModule,
   Tabulator,
 } from 'tabulator-tables';
+import { StateService } from '../state.service';
 
 @Component({
   selector: 'app-dict',
@@ -20,7 +21,10 @@ import {
   styleUrls: ['./dict.component.scss'],
 })
 export class DictComponent implements AfterViewInit, OnChanges {
-  constructor(private clipboardApi: ClipboardService) {}
+  constructor(
+    private clipboardApi: ClipboardService,
+    private stateService: StateService
+    ) {}
 
   public showCopyMsg = false;
   private table!: Tabulator;
@@ -193,7 +197,7 @@ export class DictComponent implements AfterViewInit, OnChanges {
       ...this.sharedColumnOptions,
     },
   ];
-  @Input() height: string = '100%';
+  @Input() height: string = Math.floor(window.innerHeight / 2) + 'px';
   tab = document.createElement('div');
 
   ngAfterViewInit(): void {
@@ -211,6 +215,7 @@ export class DictComponent implements AfterViewInit, OnChanges {
       this.showCopyMsg = false;
     }, 2500);
   }
+
   private drawTable(): void {
     this.tab.classList.add('table-striped');
 
@@ -230,24 +235,16 @@ export class DictComponent implements AfterViewInit, OnChanges {
       // movableColumns: true,
       data: this.tableData,
       columns: this.columnNames,
-      height: this.height,
-      maxHeight: this.height,
+      // height: this.height,
+      // maxHeight: this.height,
       // minHeight: '30vh',
       locale: true,
       langs: {
         'en-gb': {
-          pagination: {
-            page_size: 'Page Size',
-            page_title: 'Show Page',
-            first: '<<',
-            first_title: 'עמוד ראשון',
-            last: '>>',
-            last_title: 'עמוד אחרון',
-            prev: '<',
-            prev_title: 'עמוד קודם',
-            next: '>',
-            next_title: 'עמוד הבא',
-          },
+          pagination: this.stateService.paginationButtons,
+        },
+        'en-us': {
+          pagination: this.stateService.paginationButtons,
         },
       },
     });
