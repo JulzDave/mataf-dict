@@ -18,16 +18,18 @@ import { TabulatorService } from '../tabulator.service';
     styleUrls: ['./dict.component.scss'],
 })
 export class DictComponent implements AfterViewInit, OnChanges {
-    constructor(private stateService: TabulatorService) {}
+    constructor(private readonly tabulatorService: TabulatorService) {}
 
     private table!: Tabulator;
+
     get showCopyMsg(): boolean {
-        return this.stateService.showCopyMsg;
+        return this.tabulatorService.showCopyMsg;
     }
+
     @Input() tableData: any[] = DICT_TABLE_DATA;
 
-    sharedColumnOptions = {
-        ...this.stateService.sharedColumnOptions,
+    private sharedColumnOptions = {
+        ...this.tabulatorService.sharedColumnOptions,
     };
 
     @Input() columnNames: Tabulator.ColumnDefinition[] = DICT_COLUMN_NAMES.map(
@@ -36,26 +38,27 @@ export class DictComponent implements AfterViewInit, OnChanges {
             ...col,
         })
     );
+
     private tab = document.createElement('div');
 
-    ngAfterViewInit(): void {
+    public ngAfterViewInit(): void {
         this.drawTable();
     }
 
-    ngOnChanges(changes: SimpleChanges): void {
+    public ngOnChanges(_changes: SimpleChanges): void {
         this.drawTable();
     }
 
     public copyToClipboard() {
-        this.stateService.copyToClipboard(this.table);
+        this.tabulatorService.copyToClipboard(this.table);
     }
 
     private drawTable(): void {
         this.tab.classList.add('table-striped');
+        Tabulator.registerModule(this.tabulatorService.tabulatorModules);
 
-        Tabulator.registerModule(this.stateService.tabulatorModules);
         this.table = new Tabulator(this.tab, {
-            ...this.stateService.tabulatorOptions,
+            ...this.tabulatorService.tabulatorOptions,
             data: this.tableData,
             columns: this.columnNames,
         });

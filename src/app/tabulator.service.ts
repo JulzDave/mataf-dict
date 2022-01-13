@@ -17,10 +17,13 @@ export class TabulatorService {
     public showCopyMsg = false;
 
     constructor(private clipboardApi: ClipboardService) {
-        this.copyVisibilityChange.subscribe((value) => {
+        this.copyVisibilityChange$.subscribe((value) => {
             this.showCopyMsg = value;
         });
     }
+
+    public copyVisibilityChange$: Subject<boolean> = new Subject<boolean>();
+
 
     public sharedColumnOptions: Partial<Tabulator.ColumnDefinition> = {
         headerHozAlign: 'center',
@@ -70,14 +73,13 @@ export class TabulatorService {
         responsiveLayout: true,
     };
 
-    copyVisibilityChange: Subject<boolean> = new Subject<boolean>();
 
     public copyToClipboard(table: Tabulator) {
         const data = table.getData('active');
         this.clipboardApi.copyFromContent(JSON.stringify(data));
-        this.copyVisibilityChange.next(true);
+        this.copyVisibilityChange$.next(true);
         setTimeout(() => {
-            this.copyVisibilityChange.next(false);
+            this.copyVisibilityChange$.next(false);
         }, 2500);
     }
 }

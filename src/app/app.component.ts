@@ -9,12 +9,13 @@ import { delay } from 'rxjs';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements AfterViewInit {
+  constructor(private readonly observer: BreakpointObserver) {}
+  
   @ViewChild(MatSidenav)
   private sidenav!: MatSidenav;
 
-  constructor(private observer: BreakpointObserver) {}
 
-  ngAfterViewInit() {
+  public ngAfterViewInit() {
     this.observer
       .observe(['(max-width: 800px)'])
       .pipe(delay(1))

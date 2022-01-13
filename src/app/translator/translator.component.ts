@@ -18,15 +18,17 @@ import { TabulatorService } from '../tabulator.service';
     styleUrls: ['./translator.component.scss'],
 })
 export class TranslatorComponent implements AfterViewInit, OnChanges {
-    constructor(private stateService: TabulatorService) {}
+    constructor(private readonly stateService: TabulatorService) {}
 
     private table!: Tabulator;
+
     get showCopyMsg(): boolean {
         return this.stateService.showCopyMsg;
     }
+
     @Input() tableData: any[] = TRANSLATOR_TABLE_DATA;
 
-    sharedColumnOptions = {
+    private sharedColumnOptions = {
         ...this.stateService.sharedColumnOptions,
     };
 
@@ -38,11 +40,11 @@ export class TranslatorComponent implements AfterViewInit, OnChanges {
 
     private tab = document.createElement('div');
 
-    ngAfterViewInit(): void {
+    public ngAfterViewInit(): void {
         this.drawTable();
     }
 
-    ngOnChanges(changes: SimpleChanges): void {
+    public ngOnChanges(_changes: SimpleChanges): void {
         this.drawTable();
     }
 
@@ -52,8 +54,8 @@ export class TranslatorComponent implements AfterViewInit, OnChanges {
 
     private drawTable(): void {
         this.tab.classList.add('table-striped');
-
         Tabulator.registerModule(this.stateService.tabulatorModules);
+
         this.table = new Tabulator(this.tab, {
             ...this.stateService.tabulatorOptions,
             data: this.tableData,
