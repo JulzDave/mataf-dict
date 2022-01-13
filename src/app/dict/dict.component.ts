@@ -11,8 +11,12 @@ import {
   FilterModule,
   PageModule,
   SortModule,
+  ResizeColumnsModule,
+  ResizeRowsModule,
+  ResponsiveLayoutModule,
   Tabulator,
 } from 'tabulator-tables';
+import { StateService } from '../state.service';
 
 @Component({
   selector: 'app-dict',
@@ -20,7 +24,10 @@ import {
   styleUrls: ['./dict.component.scss'],
 })
 export class DictComponent implements AfterViewInit, OnChanges {
-  constructor(private clipboardApi: ClipboardService) {}
+  constructor(
+    private clipboardApi: ClipboardService,
+    private stateService: StateService
+  ) {}
 
   public showCopyMsg = false;
   private table!: Tabulator;
@@ -170,7 +177,6 @@ export class DictComponent implements AfterViewInit, OnChanges {
   ];
 
   sharedColumnOptions: Partial<Tabulator.ColumnDefinition> = {
-    width: 150,
     headerHozAlign: 'center',
     hozAlign: 'center',
     sorter: 'string',
@@ -193,7 +199,7 @@ export class DictComponent implements AfterViewInit, OnChanges {
       ...this.sharedColumnOptions,
     },
   ];
-  @Input() height: string = '415px';
+  // @Input() height: string = "40%";
   tab = document.createElement('div');
 
   ngAfterViewInit(): void {
@@ -201,6 +207,10 @@ export class DictComponent implements AfterViewInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    this.drawTable();
+  }
+
+  zxc() {
     this.drawTable();
   }
   public copyToClipboard() {
@@ -211,6 +221,7 @@ export class DictComponent implements AfterViewInit, OnChanges {
       this.showCopyMsg = false;
     }, 2500);
   }
+
   private drawTable(): void {
     this.tab.classList.add('table-striped');
 
@@ -219,35 +230,33 @@ export class DictComponent implements AfterViewInit, OnChanges {
       SortModule,
       FilterModule,
       EditModule,
+      ResizeColumnsModule,
+      ResizeRowsModule,
+      ResponsiveLayoutModule,
     ]);
     this.table = new Tabulator(this.tab, {
+      responsiveLayout: true,
+      autoResize: true,
       textDirection: 'rtl',
+      movableColumns: true,
       layout: 'fitColumns',
       pagination: true,
       paginationMode: 'local',
-      paginationSize: 7,
+      paginationSize: 20, //7,
       // paginationSizeSelector: [3, 6, 8, 10],
       // movableColumns: true,
       data: this.tableData,
       columns: this.columnNames,
-      height: this.height,
-      maxHeight: '415px',
-      minHeight: '30vh',
+      // height: "50vh",
+      maxHeight: "85vh",
+      // minHeight: '30vh',
       locale: true,
       langs: {
         'en-gb': {
-          pagination: {
-            page_size: 'Page Size',
-            page_title: 'Show Page',
-            first: '<<',
-            first_title: 'עמוד ראשון',
-            last: '>>',
-            last_title: 'עמוד אחרון',
-            prev: '<',
-            prev_title: 'עמוד קודם',
-            next: '>',
-            next_title: 'עמוד הבא',
-          },
+          pagination: this.stateService.paginationButtons,
+        },
+        'en-us': {
+          pagination: this.stateService.paginationButtons,
         },
       },
     });

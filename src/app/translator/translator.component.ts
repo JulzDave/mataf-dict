@@ -13,6 +13,7 @@ import {
   Tabulator,
 } from 'tabulator-tables';
 import { ClipboardService } from 'ngx-clipboard';
+import { StateService } from '../state.service';
 
 @Component({
   selector: 'app-translator',
@@ -20,14 +21,17 @@ import { ClipboardService } from 'ngx-clipboard';
   styleUrls: ['./translator.component.scss'],
 })
 export class TranslatorComponent implements AfterViewInit, OnChanges {
-  constructor(private clipboardApi: ClipboardService) {}
+  constructor(
+    private clipboardApi: ClipboardService,
+    private stateService: StateService
+  ) {}
   private table!: Tabulator;
-  public showCopyMsg = false
+  public showCopyMsg = false;
 
   @Input() tableData: any[] = [
     {
       table: 'SDASFAF',
-      field: 'ASFSAFDSAF',
+      field: 'ASFSAFDSAFASFSAFDSAFASFSAFDSAFASFSAFDSAFASFSAFDSAFASFSAFDSAFASFSAFDSAFASFSAFDSAFASFSAFDSAFASFSAFDSAF',
       hebrew: '1731',
       category: 'zxc',
       subcategory: 'bank',
@@ -224,7 +228,7 @@ export class TranslatorComponent implements AfterViewInit, OnChanges {
     {
       table: 'ASEG!',
       field: 'ASSGSDFGAS',
-      hebrew: "שלום!",
+      hebrew: 'שלום!',
       category: 'cat1',
       subcategory: 'day',
     },
@@ -258,7 +262,6 @@ export class TranslatorComponent implements AfterViewInit, OnChanges {
     },
   ];
   sharedColumnOptions: Partial<Tabulator.ColumnDefinition> = {
-    width: 150,
     headerHozAlign: 'center',
     hozAlign: 'center',
     sorter: 'string',
@@ -291,7 +294,6 @@ export class TranslatorComponent implements AfterViewInit, OnChanges {
       ...this.sharedColumnOptions,
     },
   ];
-  @Input() height: string = '415px';
   tab = document.createElement('div');
 
   ngAfterViewInit(): void {
@@ -325,27 +327,20 @@ export class TranslatorComponent implements AfterViewInit, OnChanges {
       layout: 'fitColumns',
       pagination: true,
       paginationMode: 'local',
-      paginationSize: 7,
+      paginationSize: 20,
       data: this.tableData,
       columns: this.columnNames,
-      height: this.height,
-      maxHeight: '415px',
-      minHeight: '30vh',
+      height: "100%",
+      // height: this.height,
+      maxHeight: "85vh",
+      // minHeight: '30vh',
       locale: true,
       langs: {
         'en-gb': {
-          pagination: {
-            page_size: 'Page Size',
-            page_title: 'Show Page',
-            first: '<<',
-            first_title: 'עמוד ראשון',
-            last: '>>',
-            last_title: 'עמוד אחרון',
-            prev: '<',
-            prev_title: 'עמוד קודם',
-            next: '>',
-            next_title: 'עמוד הבא',
-          },
+          pagination: this.stateService.paginationButtons,
+        },
+        'en-us': {
+          pagination: this.stateService.paginationButtons,
         },
       },
     });
