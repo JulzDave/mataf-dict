@@ -22,10 +22,11 @@ body * {
 .tabulator {
    font-size: 12px;
    border: none;
-   overflow: auto;
 }
 
 .tabulator .tabulator-table {
+   overflow: auto;
+   max-height: calc(85vh - 200px)!important;
    // height: 35vh!important;
 }
 
@@ -43,12 +44,11 @@ body * {
 //    padding: 0 7px;
 // }
 
-// .tabulator-row {
-//    border-bottom: 1px solid;
-//    border-bottom-color: rgba(0, 0, 0, 0.12);
-//    min-height: 48px;
-//    vertical-align: middle;
-// }
+.tabulator-row,
+.tabulator-headers {
+   display: flex;
+   justify-content: center;
+}
 
 .tabulator-row .tabulator-cell {
    // padding: 16px 7px;
@@ -60,7 +60,7 @@ body * {
    color: black;
    font-weight: bolder;
    text-decoration-line: underline;
-   margin-left: 137px;
+   // margin-left: 137px;
 }
 .tabulator-page {
    color: var(--mataf-blue) !important;
@@ -75,14 +75,14 @@ body * {
    justify-content: center;
 }
 
-.my-tabular-table {
-   transform: scale(1.5);
-}
-@media (max-width: 1337px) {
-   .my-tabular-table {
-      transform: scale(1);
-   }
-}
+// .my-tabular-table {
+//    transform: scale(1.5);
+// }
+// @media (max-width: 1337px) {
+//    .my-tabular-table {
+//       transform: scale(1);
+//    }
+// }
 .tabulator-tableholder {
    min-height: calc(100% - 136px) !important;
    height: calc(100% - 136px) !important;
@@ -106,7 +106,7 @@ body * {
 .after-copy {
    position: absolute;
    left: 50%;
-   margin-left: -105px!important;
+   margin-left: -105px !important;
    top: 45px;
    color: var(--mataf-blue);
    z-index: 2;

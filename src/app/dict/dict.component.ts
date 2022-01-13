@@ -11,6 +11,9 @@ import {
   FilterModule,
   PageModule,
   SortModule,
+  ResizeColumnsModule,
+  ResizeRowsModule,
+  ResponsiveLayoutModule,
   Tabulator,
 } from 'tabulator-tables';
 import { StateService } from '../state.service';
@@ -24,7 +27,7 @@ export class DictComponent implements AfterViewInit, OnChanges {
   constructor(
     private clipboardApi: ClipboardService,
     private stateService: StateService
-    ) {}
+  ) {}
 
   public showCopyMsg = false;
   private table!: Tabulator;
@@ -174,7 +177,6 @@ export class DictComponent implements AfterViewInit, OnChanges {
   ];
 
   sharedColumnOptions: Partial<Tabulator.ColumnDefinition> = {
-    width: 150,
     headerHozAlign: 'center',
     hozAlign: 'center',
     sorter: 'string',
@@ -197,7 +199,7 @@ export class DictComponent implements AfterViewInit, OnChanges {
       ...this.sharedColumnOptions,
     },
   ];
-  @Input() height: string = Math.floor(window.innerHeight / 2) + 'px';
+  // @Input() height: string = "40%";
   tab = document.createElement('div');
 
   ngAfterViewInit(): void {
@@ -205,6 +207,10 @@ export class DictComponent implements AfterViewInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    this.drawTable();
+  }
+
+  zxc() {
     this.drawTable();
   }
   public copyToClipboard() {
@@ -224,19 +230,25 @@ export class DictComponent implements AfterViewInit, OnChanges {
       SortModule,
       FilterModule,
       EditModule,
+      ResizeColumnsModule,
+      ResizeRowsModule,
+      ResponsiveLayoutModule,
     ]);
     this.table = new Tabulator(this.tab, {
+      responsiveLayout: true,
+      autoResize: true,
       textDirection: 'rtl',
+      movableColumns: true,
       layout: 'fitColumns',
       pagination: true,
       paginationMode: 'local',
-      paginationSize: 7,
+      paginationSize: 20, //7,
       // paginationSizeSelector: [3, 6, 8, 10],
       // movableColumns: true,
       data: this.tableData,
       columns: this.columnNames,
-      // height: this.height,
-      // maxHeight: this.height,
+      // height: "50vh",
+      maxHeight: "85vh",
       // minHeight: '30vh',
       locale: true,
       langs: {

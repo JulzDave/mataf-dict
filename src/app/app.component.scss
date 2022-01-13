@@ -29,7 +29,8 @@ mat-sidenav {
     font-size: 2rem;
     color: lightgray;
     contain: content;
-    overflow-y: auto;
+    // overflow-y: auto;
+    overflow: hidden;
     scrollbar-width: none;
 }
 

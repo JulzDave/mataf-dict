@@ -332,8 +332,9 @@ export class TranslatorComponent implements AfterViewInit, OnChanges {
       paginationSize: 7,
       data: this.tableData,
       columns: this.columnNames,
-      height: this.height,
-      maxHeight: this.height,
+      height: "100%",
+      // height: this.height,
+      // maxHeight: this.height,
       // minHeight: '30vh',
       locale: true,
       langs: {
