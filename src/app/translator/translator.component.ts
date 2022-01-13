@@ -24,11 +24,8 @@ export class TranslatorComponent implements AfterViewInit, OnChanges {
         return this.stateService.showCopyMsg;
     }
     @Input() tableData: any[] = TRANSLATOR_TABLE_DATA;
-    sharedColumnOptions: Partial<Tabulator.ColumnDefinition> = {
-        headerHozAlign: 'center',
-        hozAlign: 'center',
-        sorter: 'string',
-        headerFilter: 'input',
+    sharedColumnOptions = {
+        ...this.stateService.sharedColumnOptions
     };
     @Input() columnNames: Tabulator.ColumnDefinition[] =
         TRANSLATOR_COLUMN_NAMES.map((col) => ({

@@ -27,11 +27,8 @@ export class DictComponent implements AfterViewInit, OnChanges {
 
     @Input() tableData: any[] = DICT_TABLE_DATA;
 
-    sharedColumnOptions: Partial<Tabulator.ColumnDefinition> = {
-        headerHozAlign: 'center',
-        hozAlign: 'center',
-        sorter: 'string',
-        headerFilter: 'input',
+    sharedColumnOptions = {
+        ...this.stateService.sharedColumnOptions
     };
     @Input() columnNames: Tabulator.ColumnDefinition[] = DICT_COLUMN_NAMES.map(
         (col) => ({

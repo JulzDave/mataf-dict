@@ -22,6 +22,13 @@ export class TabulatorService {
         });
     }
 
+    public sharedColumnOptions: Partial<Tabulator.ColumnDefinition> = {
+        headerHozAlign: 'center',
+        hozAlign: 'center',
+        sorter: 'string',
+        headerFilter: 'input',
+    } as const;
+
     public paginationButtons = {
         page_size: 'Page Size',
         page_title: 'Show Page',
