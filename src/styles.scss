@@ -84,9 +84,10 @@ body * {
 //    }
 // }
 .tabulator-tableholder {
-   min-height: calc(100% - 136px) !important;
-   height: calc(100% - 136px) !important;
-   max-height: calc(100% - 136px) !important;
+   min-height: calc(85vh - 200px) !important;
+   // height: calc(100% - 136px) !important;
+   // max-height: calc(100% - 136px) !important;
+
 }
 // .tabulator-row .tabulator-cell:first-of-type,
 // .tabulator .tabulator-header .tabulator-col:first-of-type {
