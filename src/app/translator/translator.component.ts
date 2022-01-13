@@ -31,7 +31,7 @@ export class TranslatorComponent implements AfterViewInit, OnChanges {
   @Input() tableData: any[] = [
     {
       table: 'SDASFAF',
-      field: 'ASFSAFDSAF',
+      field: 'ASFSAFDSAFASFSAFDSAFASFSAFDSAFASFSAFDSAFASFSAFDSAFASFSAFDSAFASFSAFDSAFASFSAFDSAFASFSAFDSAFASFSAFDSAF',
       hebrew: '1731',
       category: 'zxc',
       subcategory: 'bank',
