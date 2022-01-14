@@ -7,10 +7,10 @@ import {
 } from '@angular/core';
 import { Tabulator } from 'tabulator-tables';
 import {
-    DICT_COLUMN_NAMES,
-    DICT_TABLE_DATA,
+    DICT_COLUMN_NAMES_STUB,
+    DICT_TABLE_DATA_STUB as DICT_TABLE_DATA_STUB,
     TdictTableData,
-} from '../constants/mataf-dict.constants';
+} from '../constants/stubs.constants';
 import { TabulatorService } from '../tabulator.service';
 
 @Component({
@@ -27,14 +27,14 @@ export class DictComponent implements AfterViewInit, OnChanges {
         return this.tabulatorService.showCopyMsg;
     }
 
-    @Input() private tableData: TdictTableData[] = DICT_TABLE_DATA;
+    @Input() private tableData: TdictTableData[] = DICT_TABLE_DATA_STUB;
 
     private sharedColumnOptions: Partial<Tabulator.ColumnDefinition> = {
         ...this.tabulatorService.sharedColumnOptions,
     };
 
     @Input() private columnNames: Tabulator.ColumnDefinition[] =
-        DICT_COLUMN_NAMES.map((col) => ({
+        DICT_COLUMN_NAMES_STUB.map((col) => ({
             ...this.sharedColumnOptions,
             ...col,
         }));
@@ -42,27 +42,30 @@ export class DictComponent implements AfterViewInit, OnChanges {
     private tab = document.createElement('div');
 
     public ngAfterViewInit(): void {
-        this.drawTable();
+        this.startTable();
     }
 
     public ngOnChanges(_changes: SimpleChanges): void {
-        this.drawTable();
+        this.startTable();
+    }
+
+    private startTable() {
+        const tableClass = 'dict-table-wrapper';
+        const { tab, table, tableData, columnNames } = this;
+        const tabulatorData = {
+            tab,
+            table,
+            tableData,
+            columnNames,
+        };
+
+        this.tabulatorService.TabulatorTableGenerator(
+            tabulatorData,
+            tableClass
+        );
     }
 
     public copyToClipboard() {
         this.tabulatorService.copyToClipboard(this.table);
-    }
-
-    private drawTable(): void {
-        this.tab.classList.add('table-striped');
-        Tabulator.registerModule(this.tabulatorService.tabulatorModules);
-
-        this.table = new Tabulator(this.tab, {
-            ...this.tabulatorService.tabulatorOptions,
-            data: this.tableData,
-            columns: this.columnNames,
-        });
-
-        document.getElementById('dict-table-wrapper')!.appendChild(this.tab);
     }
 }

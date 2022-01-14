@@ -9,6 +9,8 @@ import {
     SortModule,
     Tabulator,
 } from 'tabulator-tables';
+import { TdictTableData } from './constants/stubs.constants';
+import { ItabulatorData } from './interfaces/tabulator.interface';
 
 @Injectable({
     providedIn: 'root',
@@ -79,5 +81,22 @@ export class TabulatorService {
         setTimeout(() => {
             this.copyVisibilityChange$.next(false);
         }, 2500);
+    }
+
+    public TabulatorTableGenerator(
+        tabulatorData: ItabulatorData,
+        tableClass: string
+    ): void {
+        const { tab, tableData, columnNames } = tabulatorData;
+        tab.classList.add('table-striped');
+        Tabulator.registerModule(this.tabulatorModules);
+
+        tabulatorData.table = new Tabulator(tab, {
+            ...this.tabulatorOptions,
+            data: tableData,
+            columns: columnNames,
+        });
+
+        document.getElementById(tableClass)!.appendChild(tab);
     }
 }

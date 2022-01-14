@@ -7,10 +7,10 @@ import {
 } from '@angular/core';
 import { Tabulator } from 'tabulator-tables';
 import {
-    TRANSLATOR_COLUMN_NAMES,
-    TRANSLATOR_TABLE_DATA,
-    TtranlatorTableData,
-} from '../constants/mataf-dict.constants';
+    TRANSLATOR_COLUMN_NAMES_STUB,
+    TRANSLATOR_TABLE_DATA_STUB,
+    TtranslatorTableData,
+} from '../constants/stubs.constants';
 import { TabulatorService } from '../tabulator.service';
 
 @Component({
@@ -19,22 +19,23 @@ import { TabulatorService } from '../tabulator.service';
     styleUrls: ['./translator.component.scss'],
 })
 export class TranslatorComponent implements AfterViewInit, OnChanges {
-    constructor(private readonly stateService: TabulatorService) {}
+    constructor(private readonly tabulatorService: TabulatorService) {}
 
     private table!: Tabulator;
 
     get showCopyMsg(): boolean {
-        return this.stateService.showCopyMsg;
+        return this.tabulatorService.showCopyMsg;
     }
 
-    @Input() private tableData: TtranlatorTableData[] = TRANSLATOR_TABLE_DATA;
+    @Input() private tableData: TtranslatorTableData[] =
+        TRANSLATOR_TABLE_DATA_STUB;
 
     private sharedColumnOptions: Partial<Tabulator.ColumnDefinition> = {
-        ...this.stateService.sharedColumnOptions,
+        ...this.tabulatorService.sharedColumnOptions,
     };
 
     @Input() private columnNames: Tabulator.ColumnDefinition[] =
-        TRANSLATOR_COLUMN_NAMES.map((col) => ({
+        TRANSLATOR_COLUMN_NAMES_STUB.map((col) => ({
             ...this.sharedColumnOptions,
             ...col,
         }));
@@ -42,29 +43,30 @@ export class TranslatorComponent implements AfterViewInit, OnChanges {
     private tab = document.createElement('div');
 
     public ngAfterViewInit(): void {
-        this.drawTable();
+        this.startTable();
     }
 
     public ngOnChanges(_changes: SimpleChanges): void {
-        this.drawTable();
+        this.startTable();
     }
 
     public copyToClipboard() {
-        this.stateService.copyToClipboard(this.table);
+        this.tabulatorService.copyToClipboard(this.table);
     }
 
-    private drawTable(): void {
-        this.tab.classList.add('table-striped');
-        Tabulator.registerModule(this.stateService.tabulatorModules);
+    private startTable() {
+        const tableClass = 'translator-table-wrapper';
+        const { tab, table, tableData, columnNames } = this;
+        const tabulatorData = {
+            tab,
+            table,
+            tableData,
+            columnNames,
+        };
 
-        this.table = new Tabulator(this.tab, {
-            ...this.stateService.tabulatorOptions,
-            data: this.tableData,
-            columns: this.columnNames,
-        });
-
-        document
-            .getElementById('translator-table-wrapper')!
-            .appendChild(this.tab);
+        this.tabulatorService.TabulatorTableGenerator(
+            tabulatorData,
+            tableClass
+        );
     }
 }

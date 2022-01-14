@@ -1,8 +1,8 @@
 import { Tabulator } from 'tabulator-tables';
 
-export type TdictTableData = Record<"hebrew"|"category"|"english", string>
+export type TdictTableData = Record<'hebrew' | 'category' | 'english', string>;
 
-export const DICT_TABLE_DATA: TdictTableData[] = [
+export const DICT_TABLE_DATA_STUB: TdictTableData[] = [
     {
         hebrew: 'מוצר בר קיימא',
         category: '(כלכלה וסטטיסטיקה)',
@@ -146,9 +146,12 @@ export const DICT_TABLE_DATA: TdictTableData[] = [
     },
 ];
 
-export type TtranlatorTableData = Record<"table"|"field"|"hebrew"|"category"|"subcategory", string>
+export type TtranslatorTableData = Record<
+    'table' | 'field' | 'hebrew' | 'category' | 'subcategory',
+    string
+>;
 
-export const TRANSLATOR_TABLE_DATA: TtranlatorTableData[] = [
+export const TRANSLATOR_TABLE_DATA_STUB: TtranslatorTableData[] = [
     {
         table: 'SDASFAF',
         field: 'ASFSAFDSAFASFSAFDSAFASFSAFDSAFASFSAFDSAFASFSAFDSAFASFSAFDSAFASFSAFDSAFASFSAFDSAFASFSAFDSAFASFSAFDSAF',
@@ -382,7 +385,7 @@ export const TRANSLATOR_TABLE_DATA: TtranlatorTableData[] = [
     },
 ];
 
-export const DICT_COLUMN_NAMES: Required<Tabulator.ColumnDefinition[]> = [
+export const DICT_COLUMN_NAMES_STUB: Required<Tabulator.ColumnDefinition[]> = [
     {
         title: 'עברית',
         field: 'hebrew',
@@ -397,7 +400,9 @@ export const DICT_COLUMN_NAMES: Required<Tabulator.ColumnDefinition[]> = [
     },
 ];
 
-export const TRANSLATOR_COLUMN_NAMES: Required<Tabulator.ColumnDefinition[]> = [
+export const TRANSLATOR_COLUMN_NAMES_STUB: Required<
+    Tabulator.ColumnDefinition[]
+> = [
     {
         title: 'טבלא',
         field: 'table',
