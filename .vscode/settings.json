@@ -28,7 +28,8 @@
         "titleBar.inactiveBackground": "#18285f99",
         "titleBar.inactiveForeground": "#e7e7e799",
         "activityBar.activeBackground": "#223988",
-        "activityBar.activeBorder": "#000000",
+        "activityBar.activeBorder": "#000000"
     },
-    "peacock.remoteColor": "#18285f"
+    "peacock.remoteColor": "#18285f",
+    "prettier.useTabs": true
 }

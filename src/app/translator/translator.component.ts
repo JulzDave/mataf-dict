@@ -4,13 +4,22 @@ import {
     OnChanges,
     SimpleChanges,
 } from '@angular/core';
-import { Module, Tabulator } from 'tabulator-tables';
+import {
+    EditModule,
+    FilterModule,
+    Module,
+    PageModule,
+    ResponsiveLayoutModule,
+    SortModule,
+    Tabulator,
+} from 'tabulator-tables';
 import {
     TRANSLATOR_COLUMN_NAMES_STUB,
     TRANSLATOR_TABLE_DATA_STUB,
     TtranslatorTableData,
 } from '../constants/stubs.constants';
-import { TabulatorService } from '../tabulator.service';
+import { TabulatorSharedConfigService } from '../tabulator/tabulator-shared-config.service';
+import { TabulatorService } from '../tabulator/tabulator.service';
 
 const CLASS_NAME = 'translator-table-wrapper';
 
@@ -20,7 +29,10 @@ const CLASS_NAME = 'translator-table-wrapper';
     styleUrls: ['./translator.component.scss'],
 })
 export class TranslatorComponent implements AfterViewInit, OnChanges {
-    constructor(private readonly tabulatorService: TabulatorService) {}
+    constructor(
+        private readonly tabulatorService: TabulatorService,
+        private readonly sharedTabulatorConfig: TabulatorSharedConfigService
+    ) {}
 
     //? -------- TABLE DATA INSERTION --------
 
@@ -39,9 +51,15 @@ export class TranslatorComponent implements AfterViewInit, OnChanges {
     //? -------- TABLE CONFIGURATION INSERTION --------
 
     public tabulatorModules: Module[] = [
-        // Optional modules go here...
+        // Modules go here... (required)
+
+        PageModule,
+        SortModule,
+        EditModule,
+        FilterModule,
+        ResponsiveLayoutModule,
     ];
-    
+
     public tabulatorOptions: Tabulator.Options = {
         // Optional tabulator configurations go here...
     };
@@ -50,7 +68,7 @@ export class TranslatorComponent implements AfterViewInit, OnChanges {
 
     public columnNames: Tabulator.ColumnDefinition[] =
         this.tabulatorColumnsOptions.map((tabulatorColumnOptions) => ({
-            ...this.tabulatorService.sharedColumnsOptions,
+            ...this.sharedTabulatorConfig.sharedColumnsOptions,
             ...tabulatorColumnOptions,
         }));
 
