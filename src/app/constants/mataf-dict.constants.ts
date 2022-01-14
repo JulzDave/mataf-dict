@@ -1,6 +1,8 @@
 import { Tabulator } from 'tabulator-tables';
 
-export const DICT_TABLE_DATA: Record<string, string>[] = [
+export type TdictTableData = Record<"hebrew"|"category"|"english", string>
+
+export const DICT_TABLE_DATA: TdictTableData[] = [
     {
         hebrew: 'מוצר בר קיימא',
         category: '(כלכלה וסטטיסטיקה)',
@@ -144,7 +146,9 @@ export const DICT_TABLE_DATA: Record<string, string>[] = [
     },
 ];
 
-export const TRANSLATOR_TABLE_DATA: Record<string, string>[] = [
+export type TtranlatorTableData = Record<"table"|"field"|"hebrew"|"category"|"subcategory", string>
+
+export const TRANSLATOR_TABLE_DATA: TtranlatorTableData[] = [
     {
         table: 'SDASFAF',
         field: 'ASFSAFDSAFASFSAFDSAFASFSAFDSAFASFSAFDSAFASFSAFDSAFASFSAFDSAFASFSAFDSAFASFSAFDSAFASFSAFDSAFASFSAFDSAF',

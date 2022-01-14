@@ -9,6 +9,7 @@ import { Tabulator } from 'tabulator-tables';
 import {
     DICT_COLUMN_NAMES,
     DICT_TABLE_DATA,
+    TdictTableData,
 } from '../constants/mataf-dict.constants';
 import { TabulatorService } from '../tabulator.service';
 
@@ -26,18 +27,17 @@ export class DictComponent implements AfterViewInit, OnChanges {
         return this.tabulatorService.showCopyMsg;
     }
 
-    @Input() private tableData: any[] = DICT_TABLE_DATA;
+    @Input() private tableData: TdictTableData[] = DICT_TABLE_DATA;
 
-    private sharedColumnOptions = {
+    private sharedColumnOptions: Partial<Tabulator.ColumnDefinition> = {
         ...this.tabulatorService.sharedColumnOptions,
     };
 
-    @Input() private columnNames: Tabulator.ColumnDefinition[] = DICT_COLUMN_NAMES.map(
-        (col) => ({
+    @Input() private columnNames: Tabulator.ColumnDefinition[] =
+        DICT_COLUMN_NAMES.map((col) => ({
             ...this.sharedColumnOptions,
             ...col,
-        })
-    );
+        }));
 
     private tab = document.createElement('div');
 

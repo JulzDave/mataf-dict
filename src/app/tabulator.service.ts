@@ -24,13 +24,12 @@ export class TabulatorService {
 
     public copyVisibilityChange$: Subject<boolean> = new Subject<boolean>();
 
-
     public sharedColumnOptions: Partial<Tabulator.ColumnDefinition> = {
         headerHozAlign: 'center',
         hozAlign: 'center',
         sorter: 'string',
         headerFilter: 'input',
-    } as const;
+    };
 
     public paginationButtons = {
         page_size: 'Page Size',
@@ -62,6 +61,7 @@ export class TabulatorService {
         height: '100%',
         maxHeight: '85vh',
         locale: true,
+        responsiveLayout: true,
         langs: {
             'en-gb': {
                 pagination: this.paginationButtons,
@@ -70,9 +70,7 @@ export class TabulatorService {
                 pagination: this.paginationButtons,
             },
         },
-        responsiveLayout: true,
     };
-
 
     public copyToClipboard(table: Tabulator) {
         const data = table.getData('active');

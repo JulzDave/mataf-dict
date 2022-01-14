@@ -1,0 +1,34 @@
+{
+    "vsicons.presets.angular": true,
+    "restoreTerminals.runOnStartup": true,
+    "restoreTerminals.terminals": [
+        {
+            "splitTerminals": [
+                {
+                    "name": "mataf-dict",
+                    "commands": ["ng serve"]
+                }
+            ]
+        }
+    ],
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#18285f",
+        "activityBar.foreground": "#f8931d",
+        "activityBar.inactiveForeground": "#f8931d99",
+        "activityBarBadge.background": "#000000",
+        "activityBarBadge.foreground": "#e7e7e7",
+        "sash.hoverBorder": "#223988",
+        "statusBar.background": "#18285f99",
+        "statusBar.foreground": "#f8931d",
+        "statusBarItem.hoverBackground": "#223988",
+        "statusBarItem.remoteBackground": "#f8931d",
+        "statusBarItem.remoteForeground": "#18285f",
+        "titleBar.activeBackground": "#18285f99",
+        "titleBar.activeForeground": "#f8931d",
+        "titleBar.inactiveBackground": "#18285f99",
+        "titleBar.inactiveForeground": "#e7e7e799",
+        "activityBar.activeBackground": "#223988",
+        "activityBar.activeBorder": "#000000",
+    },
+    "peacock.remoteColor": "#18285f"
+}

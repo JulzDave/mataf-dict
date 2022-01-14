@@ -9,6 +9,7 @@ import { Tabulator } from 'tabulator-tables';
 import {
     TRANSLATOR_COLUMN_NAMES,
     TRANSLATOR_TABLE_DATA,
+    TtranlatorTableData,
 } from '../constants/mataf-dict.constants';
 import { TabulatorService } from '../tabulator.service';
 
@@ -26,9 +27,9 @@ export class TranslatorComponent implements AfterViewInit, OnChanges {
         return this.stateService.showCopyMsg;
     }
 
-    @Input() private tableData: any[] = TRANSLATOR_TABLE_DATA;
+    @Input() private tableData: TtranlatorTableData[] = TRANSLATOR_TABLE_DATA;
 
-    private sharedColumnOptions = {
+    private sharedColumnOptions: Partial<Tabulator.ColumnDefinition> = {
         ...this.stateService.sharedColumnOptions,
     };
 
