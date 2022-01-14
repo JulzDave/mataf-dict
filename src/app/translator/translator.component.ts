@@ -22,28 +22,43 @@ const CLASS_NAME = 'translator-table-wrapper';
 export class TranslatorComponent implements AfterViewInit, OnChanges {
     constructor(private readonly tabulatorService: TabulatorService) {}
 
+    //? -------- TABLE DATA INSERTION --------
+
+    public tableData: TtranslatorTableData[] = [
+        // table data goes here...
+
+        ...TRANSLATOR_TABLE_DATA_STUB,
+    ];
+
+    private tabulatorColumnsOptions: Tabulator.ColumnDefinition[] = [
+        // Optional column configurations go here...
+
+        ...TRANSLATOR_COLUMN_NAMES_STUB,
+    ];
+
+    //? -------- TABLE CONFIGURATION INSERTION --------
+
+    public tabulatorModules: Module[] = [
+        // Optional modules go here...
+    ];
+    
+    public tabulatorOptions: Tabulator.Options = {
+        // Optional tabulator configurations go here...
+    };
+
+    //? -----------------------------------------------
+
+    public columnNames: Tabulator.ColumnDefinition[] =
+        this.tabulatorColumnsOptions.map((tabulatorColumnOptions) => ({
+            ...this.tabulatorService.sharedColumnsOptions,
+            ...tabulatorColumnOptions,
+        }));
+
     public table!: Tabulator;
 
     get showCopyMsg(): boolean {
         return this.tabulatorService.showCopyMsg;
     }
-
-    public tableData: TtranslatorTableData[] = TRANSLATOR_TABLE_DATA_STUB;
-
-    private sharedColumnOptions: Partial<Tabulator.ColumnDefinition> = {
-        ...this.tabulatorService.sharedColumnOptions,
-    };
-
-    public columnNames: Tabulator.ColumnDefinition[] =
-        TRANSLATOR_COLUMN_NAMES_STUB.map((col) => ({
-            ...this.sharedColumnOptions,
-            ...col,
-        }));
-
-    public tab = document.createElement('div');
-
-    public tabulatorModules: Module[] = [];
-    public tabulatorOptions: Tabulator.Options = {};
 
     public ngAfterViewInit(): void {
         this.table = this.tabulatorService.generateTableByComponent(

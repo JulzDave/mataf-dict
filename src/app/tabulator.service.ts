@@ -28,7 +28,7 @@ export class TabulatorService {
 
     public copyVisibilityChange$: Subject<boolean> = new Subject<boolean>();
 
-    public sharedColumnOptions: Partial<Tabulator.ColumnDefinition> = {
+    public sharedColumnsOptions: Partial<Tabulator.ColumnDefinition> = {
         headerHozAlign: 'center',
         hozAlign: 'center',
         sorter: 'string',
@@ -98,7 +98,7 @@ export class TabulatorService {
         tableClass: string
     ) {
         const tabulatorData = {
-            tab: component.tab,
+            // tab: component.tab,
             table: component.table,
             tableData: component.tableData,
             columnNames: component.columnNames,
@@ -114,13 +114,12 @@ export class TabulatorService {
         tableClass: string
     ): Tabulator {
         const {
-            tab,
             tableData,
             columnNames,
             tabulatorModules,
             tabulatorOptions,
         } = tabulatorData;
-
+        const tab = document.createElement('div')
         tab.classList.add('table-striped');
         Tabulator.registerModule(this.tabulatorModules(tabulatorModules));
 
