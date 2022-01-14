@@ -15,16 +15,14 @@ export class TabulatorService {
 
     constructor(
         private readonly clipboardApi: ClipboardService,
-        private readonly sharedTabulatorConfig: TabulatorSharedConfigService,
-        ) {
+        private readonly sharedTabulatorConfig: TabulatorSharedConfigService
+    ) {
         this.copyVisibilityChange$.subscribe((value) => {
             this.showCopyMsg = value;
         });
     }
 
     public copyVisibilityChange$: Subject<boolean> = new Subject<boolean>();
-
-    
 
     public copyToClipboard(table: Tabulator) {
         const data = table.getData('active');
