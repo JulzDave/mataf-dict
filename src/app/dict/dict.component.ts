@@ -64,6 +64,8 @@ export class DictComponent implements AfterViewInit, OnChanges {
         // Optional tabulator configurations go here...
     };
 
+    //? -----------------------------------------------
+
     public columnNames: Tabulator.ColumnDefinition[] =
         this.tabulatorColumnsOptions.map((tabulatorColumnOptions) => ({
             ...this.sharedTabulatorConfig.sharedColumnsOptions,
