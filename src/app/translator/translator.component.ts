@@ -26,13 +26,13 @@ export class TranslatorComponent implements AfterViewInit, OnChanges {
         return this.stateService.showCopyMsg;
     }
 
-    @Input() tableData: any[] = TRANSLATOR_TABLE_DATA;
+    @Input() private tableData: any[] = TRANSLATOR_TABLE_DATA;
 
     private sharedColumnOptions = {
         ...this.stateService.sharedColumnOptions,
     };
 
-    @Input() columnNames: Tabulator.ColumnDefinition[] =
+    @Input() private columnNames: Tabulator.ColumnDefinition[] =
         TRANSLATOR_COLUMN_NAMES.map((col) => ({
             ...this.sharedColumnOptions,
             ...col,

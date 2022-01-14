@@ -26,13 +26,13 @@ export class DictComponent implements AfterViewInit, OnChanges {
         return this.tabulatorService.showCopyMsg;
     }
 
-    @Input() tableData: any[] = DICT_TABLE_DATA;
+    @Input() private tableData: any[] = DICT_TABLE_DATA;
 
     private sharedColumnOptions = {
         ...this.tabulatorService.sharedColumnOptions,
     };
 
-    @Input() columnNames: Tabulator.ColumnDefinition[] = DICT_COLUMN_NAMES.map(
+    @Input() private columnNames: Tabulator.ColumnDefinition[] = DICT_COLUMN_NAMES.map(
         (col) => ({
             ...this.sharedColumnOptions,
             ...col,
