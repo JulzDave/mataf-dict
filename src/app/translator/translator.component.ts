@@ -18,7 +18,6 @@ import {
     TRANSLATOR_TABLE_DATA_STUB,
     TtranslatorTableData,
 } from '../constants/stubs.constants';
-import { TabulatorSharedConfigService } from '../tabulator/tabulator-shared-config.service';
 import { TabulatorService } from '../tabulator/tabulator.service';
 
 const CLASS_NAME = 'translator-table-wrapper';
@@ -29,26 +28,13 @@ const CLASS_NAME = 'translator-table-wrapper';
     styleUrls: ['./translator.component.scss'],
 })
 export class TranslatorComponent implements AfterViewInit, OnChanges {
-    constructor(
-        private readonly tabulatorService: TabulatorService,
-        private readonly sharedTabulatorConfig: TabulatorSharedConfigService
-    ) {}
+    constructor(private readonly tabulatorService: TabulatorService) {}
 
-    //? -------- TABLE DATA INSERTION --------
+    // Table data goes here:
+    public tableData: TtranslatorTableData[] = TRANSLATOR_TABLE_DATA_STUB;
 
-    public tableData: TtranslatorTableData[] = [
-        // table data goes here...
-
-        ...TRANSLATOR_TABLE_DATA_STUB,
-    ];
-
-    private tabulatorColumnsOptions: Tabulator.ColumnDefinition[] = [
-        // Optional column configurations go here...
-
-        ...TRANSLATOR_COLUMN_NAMES_STUB,
-    ];
-
-    //? -------- TABLE CONFIGURATION INSERTION --------
+    // Column configurations go here:
+    public columnNames: Tabulator.ColumnDefinition[] = TRANSLATOR_COLUMN_NAMES_STUB
 
     public tabulatorModules: Module[] = [
         // Modules go here... (required)
@@ -63,14 +49,6 @@ export class TranslatorComponent implements AfterViewInit, OnChanges {
     public tabulatorOptions: Tabulator.Options = {
         // Optional tabulator configurations go here...
     };
-
-    //? -----------------------------------------------
-
-    public columnNames: Tabulator.ColumnDefinition[] =
-        this.tabulatorColumnsOptions.map((tabulatorColumnOptions) => ({
-            ...this.sharedTabulatorConfig.sharedColumnsOptions,
-            ...tabulatorColumnOptions,
-        }));
 
     public table!: Tabulator;
 

@@ -48,6 +48,15 @@ export class TabulatorService {
         return this.drawTable(tabulatorData, tableClass);
     }
 
+    public joinColumnsWithSharedSettings(
+        tabulatorColumnsOptions: Tabulator.ColumnDefinition[]
+    ) {
+        return tabulatorColumnsOptions.map((tabulatorColumnOptions) => ({
+            ...this.sharedTabulatorConfig.sharedColumnsOptions,
+            ...tabulatorColumnOptions,
+        }));
+    }
+
     public drawTable(
         tabulatorData: ItabulatorData,
         tableClass: string
@@ -55,13 +64,14 @@ export class TabulatorService {
         const tab = document.createElement('div');
         const { tableData, columnNames, tabulatorOptions, tabulatorModules } =
             tabulatorData;
+        ;
         tab.classList.add('table-striped');
         Tabulator.registerModule(tabulatorModules);
 
         tabulatorData.table = new Tabulator(tab, {
             ...this.sharedTabulatorConfig.tabulatorOptions(tabulatorOptions),
             data: tableData,
-            columns: columnNames,
+            columns: this.joinColumnsWithSharedSettings(columnNames),
         });
 
         document.getElementById(tableClass)!.appendChild(tab);
