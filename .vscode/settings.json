@@ -30,6 +30,5 @@
         "activityBar.activeBackground": "#223988",
         "activityBar.activeBorder": "#000000"
     },
-    "peacock.remoteColor": "#18285f",
     "prettier.useTabs": true
 }
