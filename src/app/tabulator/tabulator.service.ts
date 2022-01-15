@@ -38,7 +38,6 @@ export class TabulatorService {
         tableClass: string
     ) {
         const tabulatorData = {
-            // tab: component.tab,
             table: component.table,
             tableData: component.tableData,
             columnNames: component.columnNames,
