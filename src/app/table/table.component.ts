@@ -36,17 +36,15 @@ export class TableComponent implements AfterViewInit {
     }
 
     public ngAfterViewInit(): void {
-        setTimeout(() => {
-            this.activatedRoute.params.subscribe((val: any) => {
+        this.activatedRoute.params.subscribe(() => {
+            setTimeout(() => {
                 this.table = this.tabulatorService.generateTableByComponent(
                     this,
                     CLASS_NAME
                 );
-            });
-        }, 0);
+            }, 0);
+        });
     }
-
-    public ngOnInit() {}
 
     public copyToClipboard() {
         this.tabulatorService.copyToClipboard(this.table);
