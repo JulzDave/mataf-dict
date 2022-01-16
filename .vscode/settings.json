@@ -12,28 +12,11 @@
         }
     ],
     "workbench.colorCustomizations": {
-        "activityBar.background": "#18285f",
-        "activityBar.foreground": "#f8931d",
-        "activityBar.inactiveForeground": "#f8931d99",
-        "activityBarBadge.background": "#000000",
-        "activityBarBadge.foreground": "#e7e7e7",
-        "sash.hoverBorder": "#223988",
-        "statusBar.background": "#18285f99",
         "sideBar.background": "#18285f99",
         "terminal.background": "#010510",
         "breadcrumb.background": "#18285f99",
         "panel.background": "#18285f55",
-        "editor.background": "#18285f11",
-        "statusBar.foreground": "#f8931d",
-        "statusBarItem.hoverBackground": "#223988",
-        "statusBarItem.remoteBackground": "#f8931d",
-        "statusBarItem.remoteForeground": "#18285f",
-        "titleBar.activeBackground": "#18285f99",
-        "titleBar.activeForeground": "#f8931d",
-        "titleBar.inactiveBackground": "#18285f99",
-        "titleBar.inactiveForeground": "#e7e7e799",
-        "activityBar.activeBackground": "#223988",
-        "activityBar.activeBorder": "#000000"
+        "editor.background": "#18285f11"
     },
     "prettier.useTabs": true
 }

@@ -5,8 +5,8 @@ import {
 } from '../constants/stubs.constants';
 
 export interface ItabulatorData {
-    table: Tabulator;
-    tableData: TdictTableData[] | TtranslatorTableData[];
+    // table: Tabulator;
+    tableData: Record<string, string>[];
     columnNames: Tabulator.ColumnDefinition[];
     tabulatorModules: Module[];
     tabulatorOptions: Tabulator.Options;

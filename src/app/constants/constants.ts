@@ -1,0 +1,1 @@
+export const UNKWONWN_ROUTE_DATASOURCE = {error: "UNKWONWN_ROUTE_DATASOURCE", message:"the activated route is courrupted", name: "Unknown Route Datasource" }
