@@ -1,21 +1,9 @@
 import { AfterViewInit, Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import {
-    EditModule,
-    FilterModule,
-    Module,
-    PageModule,
-    ResponsiveLayoutModule,
-    SortModule,
-    Tabulator,
-} from 'tabulator-tables';
-import { UNKWONWN_ROUTE_DATASOURCE } from '../constants/constants';
-import {
-    DICT_STUB,
-    TdataSource,
-    TRANSLATOR_STUB,
-} from '../constants/stubs.constants';
+import { ActivatedRoute } from '@angular/router';
+import { Module, Tabulator } from 'tabulator-tables';
+import { DataService } from '../data/data.service';
 import { TabulatorService } from '../tabulator/tabulator.service';
+import { TdataSource } from '../types/columns-data.type';
 
 const CLASS_NAME = 'table-wrapper';
 
@@ -27,42 +15,20 @@ const CLASS_NAME = 'table-wrapper';
 export class TableComponent implements AfterViewInit {
     constructor(
         private readonly tabulatorService: TabulatorService,
-        private router: Router,
-        private activatedRoute: ActivatedRoute
+        private readonly dataService: DataService,
+        private readonly activatedRoute: ActivatedRoute
     ) {}
 
-    fetchData(): TdataSource {
-        switch (this.router.url) {
-            case '/dict':
-                return DICT_STUB;
-            case '/translator':
-                return TRANSLATOR_STUB;
-            default:
-                throw UNKWONWN_ROUTE_DATASOURCE as Error;
-        }
-    }
-    public data: TdataSource = this.fetchData();
+    public data = this.dataService.fetchData();
 
-    // Table data goes here:
     public tableData: Record<string, string>[] = this.data.TABLE_DATA_STUB;
 
-    // Column configurations go here:
     public columnNames: Tabulator.ColumnDefinition[] =
         this.data.COLUMN_NAMES_STUB;
 
-    public tabulatorModules: Module[] = [
-        // Modules go here... (required)
+    public tabulatorModules: Module[] = this.data.TABLE_MODULES;
 
-        PageModule,
-        SortModule,
-        EditModule,
-        FilterModule,
-        ResponsiveLayoutModule,
-    ];
-
-    public tabulatorOptions: Tabulator.Options = {
-        // Optional tabulator configurations go here...
-    };
+    public tabulatorOptions = this.data.TABLE_OPTIONS;
 
     public table!: Tabulator;
 

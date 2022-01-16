@@ -1,8 +1,4 @@
-import { Tabulator, Module } from 'tabulator-tables';
-import {
-    TdictTableData,
-    TtranslatorTableData,
-} from '../constants/stubs.constants';
+import { Module, Tabulator } from 'tabulator-tables';
 
 export interface ItabulatorData {
     // table: Tabulator;
