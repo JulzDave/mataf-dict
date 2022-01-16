@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Module, Tabulator } from 'tabulator-tables';
 import { DataService } from '../data/data.service';
 import { TabulatorService } from '../tabulator/tabulator.service';
-import { TdataSource } from '../types/columns-data.type';
 
 const CLASS_NAME = 'table-wrapper';
 
