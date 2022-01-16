@@ -63,7 +63,9 @@ export class TabulatorService {
         const tab = document.createElement('div');
         const { tableData, columnNames, tabulatorOptions, tabulatorModules } =
             tabulatorData;
+
         tab.classList.add('table-striped');
+        
         Tabulator.registerModule(tabulatorModules);
 
         const table = new Tabulator(tab, {

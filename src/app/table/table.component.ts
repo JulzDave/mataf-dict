@@ -1,6 +1,6 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Module, Tabulator } from 'tabulator-tables';
+import { Tabulator } from 'tabulator-tables';
 import { DataService } from '../data/data.service';
 import { TabulatorService } from '../tabulator/tabulator.service';
 
@@ -22,10 +22,9 @@ export class TableComponent implements AfterViewInit {
 
     public tableData: Record<string, string>[] = this.data.TABLE_DATA_STUB;
 
-    public columnNames: Tabulator.ColumnDefinition[] =
-        this.data.COLUMN_NAMES_STUB;
+    public columnNames = this.data.COLUMN_NAMES_STUB;
 
-    public tabulatorModules: Module[] = this.data.TABLE_MODULES;
+    public tabulatorModules = this.data.TABLE_MODULES;
 
     public tabulatorOptions = this.data.TABLE_OPTIONS;
 
