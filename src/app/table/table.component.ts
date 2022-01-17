@@ -34,6 +34,10 @@ export class TableComponent implements AfterViewInit {
         return this.tabulatorService.showCopyMsg;
     }
 
+    public removeCopyMsg() {
+        this.tabulatorService.showCopyMsg = false;
+    }
+
     public ngAfterViewInit(): void {
         this.activatedRoute.params.subscribe(() => {
             setTimeout(() => {
