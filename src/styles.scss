@@ -30,7 +30,7 @@ body * {
 .tabulator .tabulator-table {
    overflow: auto;
    height: 100%;
-   overflow: hidden;
+   overflow-x: hidden; //! Dangerous - might prevent table from scaling horizontally.
 }
 
 .tabulator-row,
