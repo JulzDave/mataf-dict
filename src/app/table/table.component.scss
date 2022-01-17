@@ -3,6 +3,10 @@ table {
 }
 
 :host {
-    width: 90%;
+    width: 100%;
     // display: grid;
+}
+
+#table-wrapper {
+    height: 100%
 }

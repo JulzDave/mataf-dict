@@ -36,7 +36,6 @@ export class TabulatorSharedConfigService {
             paginationMode: 'local',
             paginationSize: 20,
             height: '100%',
-            maxHeight: '85vh',
             responsiveLayout: true,
             locale: true,
             langs: {

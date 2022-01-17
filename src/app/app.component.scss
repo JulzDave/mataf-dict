@@ -25,11 +25,9 @@ mat-sidenav {
     margin-left: 32px;
     display: flex;
     justify-content: center;
-    align-items: center;
     font-size: 2rem;
     color: lightgray;
     contain: content;
-    // overflow-y: auto;
     overflow: hidden;
     scrollbar-width: none;
 }
