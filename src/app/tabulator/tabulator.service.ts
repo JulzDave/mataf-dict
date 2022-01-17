@@ -23,12 +23,16 @@ export class TabulatorService {
 
     public copyVisibilityChange$: Subject<boolean> = new Subject<boolean>();
 
+    public turnOffMsgFlag = () => {
+        this.copyVisibilityChange$.next(false);
+    };
+
     public copyToClipboard(table: Tabulator) {
         const data = table.getData('active');
         this.clipboardApi.copyFromContent(JSON.stringify(data));
         this.copyVisibilityChange$.next(true);
         setTimeout(() => {
-            this.copyVisibilityChange$.next(false);
+            this.turnOffMsgFlag();
         }, 2500);
     }
 
@@ -65,7 +69,7 @@ export class TabulatorService {
             tabulatorData;
 
         tab.classList.add('table-striped');
-        
+
         Tabulator.registerModule(tabulatorModules);
 
         const table = new Tabulator(tab, {

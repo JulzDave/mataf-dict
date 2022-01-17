@@ -35,7 +35,7 @@ export class TableComponent implements AfterViewInit {
     }
 
     public removeCopyMsg() {
-        this.tabulatorService.showCopyMsg = false;
+        this.tabulatorService.turnOffMsgFlag();
     }
 
     public ngAfterViewInit(): void {
