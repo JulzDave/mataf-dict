@@ -30,6 +30,7 @@ body * {
 .tabulator .tabulator-table {
    overflow: auto;
    height: 100%;
+   overflow: hidden;
 }
 
 .tabulator-row,
