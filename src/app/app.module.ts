@@ -10,11 +10,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClipboardModule } from 'ngx-clipboard';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
-    declarations: [AppComponent, routingComponents, PageNotFoundComponent, HomeComponent],
+    declarations: [
+        AppComponent,
+        routingComponents,
+        PageNotFoundComponent,
+        HomeComponent,
+    ],
     imports: [
         BrowserModule,
         AppRoutingModule,
