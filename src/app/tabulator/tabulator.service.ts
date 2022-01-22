@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ClipboardService } from 'ngx-clipboard';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { Tabulator } from 'tabulator-tables';
 import { TableComponent } from '../table/table.component';
 import { ItabulatorData } from '../interfaces/tabulator.interface';
@@ -20,7 +20,6 @@ export class TabulatorService {
             this.showCopyMsg = value;
         });
     }
-
     public copyVisibilityChange$: Subject<boolean> = new Subject<boolean>();
 
     public turnOffMsgFlag = () => {
@@ -36,10 +35,7 @@ export class TabulatorService {
         }, 2500);
     }
 
-    public generateTableByComponent(
-        component: TableComponent,
-        tableClass: string
-    ) {
+    public generateTable(component: TableComponent, tableClass: string) {
         const tabulatorData = {
             // table: component.table,
             tableData: component.tableData,
