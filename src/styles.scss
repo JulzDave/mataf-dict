@@ -70,21 +70,7 @@ body * {
 .copy-btn:active {
    color: gray;
 }
-.after-copy {
-   position: absolute;
-   left: 50%;
-   margin-left: -105px !important;
-   top: 45px;
-   color: var(--mataf-blue);
-   z-index: 2;
-   background-color: whitesmoke;
-   box-shadow: 0px 0px 0px 0px;
-   padding: 3px 15px 3px 15px;
-   box-shadow: rgb(50 50 93 / 25%) 0px 13px 27px -5px, rgb(0 0 0 / 30%) 0px 8px 16px -8px;
-   border: 1px solid;
-   background: rgb(255, 255, 255);
-   font-family: "Open-Sans";
-}
+
 
 .table-striped {
    height: calc(100% - 50px) !important;

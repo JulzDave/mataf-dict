@@ -3,6 +3,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import {
+    MatSnackBarModule,
+    MAT_SNACK_BAR_DEFAULT_OPTIONS,
+} from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
@@ -31,6 +35,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
         MatDividerModule,
         MatTableModule,
         ClipboardModule,
+        MatSnackBarModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

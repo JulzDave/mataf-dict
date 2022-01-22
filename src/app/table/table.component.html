@@ -1,4 +1,4 @@
-<h2 class="after-copy" (mouseenter)="removeCopyMsg()" *ngIf="showCopyMsg">השדות הנבחרים הועתקו</h2>
 <button class="copy-btn" *ngIf="!loading" mat-icon-button (click)="copyToClipboard()" title="העתק"><mat-icon>file_copy</mat-icon></button>
+<button class="copy-btn" *ngIf="!loading" mat-icon-button (click)="cleanTable()" title="בטל סינון"><mat-icon>backup_table</mat-icon></button>
 <div *ngIf="loading" class="loader">Loading...</div>
 <div id="table-wrapper" class="my-tabular-table mat-elevation-z4"></div>

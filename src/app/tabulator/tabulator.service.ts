@@ -1,47 +1,28 @@
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ClipboardService } from 'ngx-clipboard';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { Tabulator } from 'tabulator-tables';
-import { TableComponent } from '../table/table.component';
 import { ItabulatorData } from '../interfaces/tabulator.interface';
+import { TableComponent } from '../table/table.component';
 import { TabulatorSharedConfigService } from './tabulator-shared-config.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class TabulatorService {
-    public showCopyMsg = false;
-
     constructor(
-        private readonly clipboardApi: ClipboardService,
         private readonly sharedTabulatorConfig: TabulatorSharedConfigService
-    ) {
-        this.copyVisibilityChange$.subscribe((value) => {
-            this.showCopyMsg = value;
-        });
-    }
-    public copyVisibilityChange$: Subject<boolean> = new Subject<boolean>();
-
-    public turnOffMsgFlag = () => {
-        this.copyVisibilityChange$.next(false);
-    };
-
-    public copyToClipboard(table: Tabulator) {
-        const data = table.getData('active');
-        this.clipboardApi.copyFromContent(JSON.stringify(data));
-        this.copyVisibilityChange$.next(true);
-        setTimeout(() => {
-            this.turnOffMsgFlag();
-        }, 2500);
-    }
+    ) {}
 
     public generateTable(component: TableComponent, tableClass: string) {
+        const { tableData, columnNames, tabulatorModules, tabulatorOptions } =
+            component;
         const tabulatorData = {
-            // table: component.table,
-            tableData: component.tableData,
-            columnNames: component.columnNames,
-            tabulatorModules: component.tabulatorModules,
-            tabulatorOptions: component.tabulatorOptions,
+            tableData,
+            columnNames,
+            tabulatorModules,
+            tabulatorOptions,
         };
 
         return this.drawTable(tabulatorData, tableClass);

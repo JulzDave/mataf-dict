@@ -1,13 +1,21 @@
-import { AfterViewInit, Component } from '@angular/core';
+import {
+    AfterViewInit,
+    Component,
+    OnInit,
+    ViewContainerRef,
+} from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import {
     ActivatedRoute,
     ActivatedRouteSnapshot,
     Router,
 } from '@angular/router';
+import { ClipboardService } from 'ngx-clipboard';
 import { Tabulator } from 'tabulator-tables';
+import { AppStateService } from '../app-state.service';
 import { DataService } from '../data/data.service';
 import { TabulatorService } from '../tabulator/tabulator.service';
-
+ViewContainerRef;
 const CLASS_NAME = 'table-wrapper';
 
 @Component({
@@ -15,12 +23,15 @@ const CLASS_NAME = 'table-wrapper';
     templateUrl: './table.component.html',
     styleUrls: ['./table.component.scss'],
 })
-export class TableComponent implements AfterViewInit {
+export class TableComponent implements AfterViewInit, OnInit {
     constructor(
         private readonly tabulatorService: TabulatorService,
+        private readonly appService: AppStateService,
         private readonly dataService: DataService,
         private readonly activatedRoute: ActivatedRoute,
-        private readonly router: Router
+        private readonly router: Router,
+        private readonly clipboardApi: ClipboardService,
+        private snackBar: MatSnackBar
     ) {
         this.router.routeReuseStrategy.shouldReuseRoute = (
             future: ActivatedRouteSnapshot,
@@ -36,14 +47,8 @@ export class TableComponent implements AfterViewInit {
     public tabulatorOptions = this.data.TABLE_OPTIONS;
     public loading = true;
     public table!: Tabulator;
-
-    get showCopyMsg(): boolean {
-        return this.tabulatorService.showCopyMsg;
-    }
-
-    public removeCopyMsg() {
-        this.tabulatorService.turnOffMsgFlag();
-    }
+    public currentFeedbackMessage: string = 'השדות הנבחרים הועתקו';
+    private sideBarState!: string;
 
     public ngAfterViewInit(): void {
         this.activatedRoute.params.subscribe(() => {
@@ -56,8 +61,34 @@ export class TableComponent implements AfterViewInit {
             }, 0);
         });
     }
- 
+
+    public openSnackBar(message: string, action: string) {
+        this.snackBar.open(message, action, {
+            duration: 2500,
+            panelClass: [
+                this.sideBarState === 'open'
+                    ? 'snackbar-when-side-bar-is-opened'
+                    : 'custom-snackbar',
+                'custom-snackbar',
+            ],
+        });
+    }
+
+    public cleanTable() {
+        this.currentFeedbackMessage = 'הסינון הוסר';
+        this.table.clearFilter(true);
+        this.openSnackBar(this.currentFeedbackMessage, 'סגור');
+    }
+
     public copyToClipboard() {
-        this.tabulatorService.copyToClipboard(this.table);
+        this.currentFeedbackMessage = 'השדות הנבחרים הועתקו';
+        const data = this.table.getData('active');
+        this.clipboardApi.copyFromContent(JSON.stringify(data));
+        this.openSnackBar(this.currentFeedbackMessage, 'סגור');
+    }
+    ngOnInit() {
+        this.appService.currentSideBarState$.subscribe(
+            (sideBarState) => (this.sideBarState = sideBarState)
+        );
     }
 }
