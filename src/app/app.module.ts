@@ -3,6 +3,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import {
+    MatSnackBarModule,
+    MAT_SNACK_BAR_DEFAULT_OPTIONS,
+} from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
@@ -10,11 +14,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClipboardModule } from 'ngx-clipboard';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
-    declarations: [AppComponent, routingComponents, PageNotFoundComponent, HomeComponent],
+    declarations: [
+        AppComponent,
+        routingComponents,
+        PageNotFoundComponent,
+        HomeComponent,
+    ],
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -26,6 +35,7 @@ import { HomeComponent } from './home/home.component';
         MatDividerModule,
         MatTableModule,
         ClipboardModule,
+        MatSnackBarModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

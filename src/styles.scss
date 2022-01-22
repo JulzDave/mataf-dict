@@ -1,8 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
 @font-face {
    font-family: "Open-Sans";
    src: local("Open-Sans"), url("./assets/fonts/open-sans/static/OpenSans/OpenSans-Medium.ttf") format("truetype");
 }
+
 :root {
    --mataf-blue: rgba(24, 40, 95, 1);
    --mataf-blue-gradient: linear-gradient(220deg, var(--mataf-blue), black);
@@ -13,8 +13,10 @@ html,
 body {
    height: 100%;
 }
+
 body {
    margin: 0;
+   overflow: hidden;
 }
 body * {
    font-family: "Open-Sans", "Roboto", "Helvetica Neue", sans-serif;
@@ -27,23 +29,9 @@ body * {
 
 .tabulator .tabulator-table {
    overflow: auto;
-   max-height: calc(85vh - 200px)!important;
-   // height: 35vh!important;
+   height: 100%;
+   overflow-x: hidden; //! Dangerous - might prevent table from scaling horizontally.
 }
-
-// .tabulator .tabulator-header {
-//    font-weight: normal;
-//    border-bottom: 1px solid;
-//    border-bottom-color: rgba(0, 0, 0, 0.12);
-//    color: rgba(0, 0, 0, 0.54);
-// }
-
-// .tabulator .tabulator-header .tabulator-col {
-//    height: 48px;
-//    background-color: #ffffff;
-//    border: none;
-//    padding: 0 7px;
-// }
 
 .tabulator-row,
 .tabulator-headers {
@@ -76,42 +64,16 @@ body * {
    justify-content: center;
 }
 
-// .my-tabular-table {
-//    transform: scale(1.5);
-// }
-// @media (max-width: 1337px) {
-//    .my-tabular-table {
-//       transform: scale(1);
-//    }
-// }
-.tabulator-tableholder {
-   min-height: calc(85vh - 200px) !important;
-   // height: calc(100% - 136px) !important;
-   // max-height: calc(100% - 136px) !important;
-
-}
-// .tabulator-row .tabulator-cell:first-of-type,
-// .tabulator .tabulator-header .tabulator-col:first-of-type {
-//    padding-left: 24px;
-// }
-
-// .tabulator-row.tabulator-row-even {
-//    background-color: #ffffff;
-// }
-
 .copy-btn {
    color: var(--mataf-blue);
 }
 .copy-btn:active {
    color: gray;
 }
-.after-copy {
-   position: absolute;
-   left: 50%;
-   margin-left: -105px !important;
-   top: 45px;
-   color: var(--mataf-blue);
-   z-index: 2;
+
+
+.table-striped {
+   height: calc(100% - 50px) !important;
 }
 
 /* width */

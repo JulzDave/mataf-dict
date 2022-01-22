@@ -1,48 +1,28 @@
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ClipboardService } from 'ngx-clipboard';
 import { Subject } from 'rxjs';
 import { Tabulator } from 'tabulator-tables';
-import { DictComponent } from '../dict/dict.component';
 import { ItabulatorData } from '../interfaces/tabulator.interface';
-import { TranslatorComponent } from '../translator/translator.component';
+import { TableComponent } from '../table/table.component';
 import { TabulatorSharedConfigService } from './tabulator-shared-config.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class TabulatorService {
-    public showCopyMsg = false;
-
     constructor(
-        private readonly clipboardApi: ClipboardService,
         private readonly sharedTabulatorConfig: TabulatorSharedConfigService
-    ) {
-        this.copyVisibilityChange$.subscribe((value) => {
-            this.showCopyMsg = value;
-        });
-    }
+    ) {}
 
-    public copyVisibilityChange$: Subject<boolean> = new Subject<boolean>();
-
-    public copyToClipboard(table: Tabulator) {
-        const data = table.getData('active');
-        this.clipboardApi.copyFromContent(JSON.stringify(data));
-        this.copyVisibilityChange$.next(true);
-        setTimeout(() => {
-            this.copyVisibilityChange$.next(false);
-        }, 2500);
-    }
-
-    public generateTableByComponent(
-        component: DictComponent | TranslatorComponent,
-        tableClass: string
-    ) {
+    public generateTable(component: TableComponent, tableClass: string) {
+        const { tableData, columnNames, tabulatorModules, tabulatorOptions } =
+            component;
         const tabulatorData = {
-            table: component.table,
-            tableData: component.tableData,
-            columnNames: component.columnNames,
-            tabulatorModules: component.tabulatorModules,
-            tabulatorOptions: component.tabulatorOptions,
+            tableData,
+            columnNames,
+            tabulatorModules,
+            tabulatorOptions,
         };
 
         return this.drawTable(tabulatorData, tableClass);
@@ -64,11 +44,12 @@ export class TabulatorService {
         const tab = document.createElement('div');
         const { tableData, columnNames, tabulatorOptions, tabulatorModules } =
             tabulatorData;
-        ;
+
         tab.classList.add('table-striped');
+
         Tabulator.registerModule(tabulatorModules);
 
-        tabulatorData.table = new Tabulator(tab, {
+        const table = new Tabulator(tab, {
             ...this.sharedTabulatorConfig.tabulatorOptions(tabulatorOptions),
             data: tableData,
             columns: this.joinColumnsWithSharedSettings(columnNames),
@@ -76,6 +57,6 @@ export class TabulatorService {
 
         document.getElementById(tableClass)!.appendChild(tab);
 
-        return tabulatorData.table;
+        return table;
     }
 }

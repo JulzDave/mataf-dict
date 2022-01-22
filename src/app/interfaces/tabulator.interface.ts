@@ -1,12 +1,8 @@
-import { Tabulator, Module } from 'tabulator-tables';
-import {
-    TdictTableData,
-    TtranslatorTableData,
-} from '../constants/stubs.constants';
+import { Module, Tabulator } from 'tabulator-tables';
 
 export interface ItabulatorData {
-    table: Tabulator;
-    tableData: TdictTableData[] | TtranslatorTableData[];
+    // table: Tabulator;
+    tableData: Record<string, string>[];
     columnNames: Tabulator.ColumnDefinition[];
     tabulatorModules: Module[];
     tabulatorOptions: Tabulator.Options;
