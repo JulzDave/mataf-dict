@@ -1,7 +1,4 @@
 import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { ClipboardService } from 'ngx-clipboard';
-import { Subject } from 'rxjs';
 import { Tabulator } from 'tabulator-tables';
 import { ItabulatorData } from '../interfaces/tabulator.interface';
 import { TableComponent } from '../table/table.component';
