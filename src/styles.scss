@@ -71,6 +71,10 @@ body * {
    color: gray;
 }
 
+.tabulator-col.tabulator-sortable,
+.tabulator-cell {
+   width: 100% !important;
+}
 
 .table-striped {
    height: calc(100% - 50px) !important;
